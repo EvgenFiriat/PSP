@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="511.0" prefWidth="718.0" scaleShape="false" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane layoutX="179.0" layoutY="-1.0" prefHeight="511.0" prefWidth="539.0">
+         <children>
+            <Pane layoutY="1.0" prefHeight="511.0" prefWidth="539.0">
+               <children>
+                  <JFXTextField layoutX="20.0" layoutY="32.0" prefHeight="18.0" prefWidth="140.0" promptText="Поиск сотрудников">
+                     <font>
+                        <Font name="Noto Sans Arabic UI Regular" size="10.0" />
+                     </font>
+                  </JFXTextField>
+                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="215.0" layoutY="26.0" prefHeight="93.0" prefWidth="291.0" text="Профиль сотрудника" textAlignment="CENTER">
+                     <font>
+                        <Font name="Noto Naskh Arabic UI Bold" size="22.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="123.0" layoutY="156.0" text="Email:">
+                     <font>
+                        <Font name="Noto Sans Arabic UI Regular" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="123.0" layoutY="183.0" text="Skype:">
+                     <font>
+                        <Font name="Noto Sans Arabic UI Regular" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="123.0" layoutY="212.0" text="Должность:">
+                     <font>
+                        <Font name="Noto Sans Arabic UI Regular" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="294.0" layoutY="156.0" text="Yauheni@gmail.com" textAlignment="JUSTIFY">
+                     <font>
+                        <Font name="Noto Sans Arabic UI Regular" size="16.0" />
+                     </font>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
+                  <Label layoutX="294.0" layoutY="183.0" text="ShymanovichYauheni" textAlignment="JUSTIFY">
+                     <font>
+                        <Font name="Noto Sans Arabic UI Regular" size="16.0" />
+                     </font>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
+                  <Label layoutX="294.0" layoutY="212.0" text="Разработчик" textAlignment="JUSTIFY">
+                     <font>
+                        <Font name="Noto Sans Arabic UI Regular" size="16.0" />
+                     </font>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
+                  <JFXButton layoutX="474.0" layoutY="49.0" ripplerFill="#cdc0c0" text="Править" underline="true">
+                     <font>
+                        <Font name="System Italic" size="10.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
+                  <Label layoutX="123.0" layoutY="269.0" text="Текущий проект:">
+                     <font>
+                        <Font name="Noto Sans Arabic UI Regular" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="306.0" layoutY="269.0" prefHeight="26.0" prefWidth="140.0" text="SmileDirectClub" textAlignment="JUSTIFY">
+                     <font>
+                        <Font name="Noto Sans Arabic UI Regular" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="123.0" layoutY="242.0" text="Контактный номер:">
+                     <font>
+                        <Font name="Noto Sans Arabic UI Regular" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="309.0" layoutY="243.0" text="+37529189689" textAlignment="JUSTIFY" textFill="#262c75" underline="true">
+                     <font>
+                        <Font name="Noto Sans Arabic UI Regular" size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+         </children>
+      </AnchorPane>
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="511.0" prefWidth="178.0" style="-fx-background-color: #1D2026;">
+         <children>
+            <Pane prefHeight="85.0" prefWidth="178.0">
+               <children>
+                  <Label layoutX="21.0" layoutY="27.0" text="SMS App" textFill="WHITE">
+                     <font>
+                        <Font name="Noto Sans Carian Regular" size="20.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="104.0" layoutY="18.0" text="Admin" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <JFXButton defaultButton="true" layoutX="19.0" layoutY="155.0" prefHeight="28.0" prefWidth="140.0" ripplerFill="#070707" text="Профиль" textFill="WHITE" underline="true">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></JFXButton>
+            <JFXButton layoutX="19.0" layoutY="197.0" prefHeight="28.0" prefWidth="140.0" ripplerFill="#070707" text="Проекты" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></JFXButton>
+            <JFXButton layoutX="19.0" layoutY="242.0" prefHeight="28.0" prefWidth="140.0" ripplerFill="#070707" text="Вне офиса" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></JFXButton>
+            <JFXButton layoutX="19.0" layoutY="285.0" prefHeight="28.0" prefWidth="140.0" ripplerFill="#070707" text="Уведомления (1)" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <JFXButton layoutX="19.0" layoutY="409.0" prefHeight="28.0" prefWidth="140.0" ripplerFill="#070707" text="Статистика" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <JFXButton layoutX="19.0" layoutY="446.0" prefHeight="28.0" prefWidth="140.0" ripplerFill="#070707" text="Добавить сотрудника" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

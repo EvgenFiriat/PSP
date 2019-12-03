@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane prefHeight="86.0" prefWidth="600.0" style="-fx-background-color: #1D2026;">
+         <children>
+            <Label layoutX="268.0" layoutY="25.0" text="Login" textFill="#fffefe">
+               <font>
+                  <Font name="Noto Sans Arabic UI Bold" size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="527.0" layoutY="34.0" text="SMS App" textFill="WHITE">
+               <font>
+                  <Font name="Noto Sans Tamil Bold" size="12.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <JFXTextField layoutX="134.0" layoutY="153.0" opacity="0.9" prefHeight="37.0" prefWidth="332.0" promptText="Почтовый ящик">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </JFXTextField>
+      <JFXButton layoutX="212.0" layoutY="321.0" prefHeight="37.0" prefWidth="176.0" style="-fx-background-color: #C2A762;" text="Submit" textFill="#220000">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </JFXButton>
+      <JFXPasswordField layoutX="134.0" layoutY="211.0" opacity="0.8" prefHeight="37.0" prefWidth="332.0" promptText="Пароль">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </JFXPasswordField>
+      <Label alignment="CENTER" layoutX="194.0" layoutY="274.0" prefHeight="18.0" prefWidth="212.0" text="Сообщение об ошибке" textFill="#e81e1e" visible="false" />
+   </children>
+</AnchorPane>
