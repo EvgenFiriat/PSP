@@ -11,9 +11,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="601.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="601.0" prefWidth="600.0" styleClass="main-color-light" stylesheets="@../../../css/colors.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.admin.AddUserController">
    <children>
-      <AnchorPane layoutY="-1.0" prefHeight="87.0" prefWidth="600.0" style="-fx-background-color: #1D2026;">
+      <AnchorPane layoutY="-1.0" prefHeight="87.0" prefWidth="600.0" styleClass="main-color">
          <children>
             <Label layoutX="148.0" layoutY="25.0" text="Создание пользователя" textFill="#fffefe">
                <font>
@@ -40,52 +40,52 @@
       <Label layoutX="109.0" layoutY="335.0" prefHeight="18.0" text="Телефонный номер" />
       <Label layoutX="109.0" layoutY="369.0" prefHeight="18.0" text="Заработная плата" />
       <Label layoutX="109.0" layoutY="403.0" prefHeight="18.0" text="Позиция" />
-      <JFXButton layoutX="209.0" layoutY="484.0" prefHeight="37.0" prefWidth="183.0" style="-fx-background-color: #1D2026;" text="Создать" textFill="WHITE">
+      <JFXButton fx:id="submitButton" layoutX="209.0" layoutY="484.0" onAction="#submitUser" prefHeight="37.0" prefWidth="183.0" styleClass="sub-color" text="Создать" textFill="WHITE">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <JFXPasswordField layoutX="319.0" layoutY="229.0">
+      <JFXPasswordField fx:id="passwordInput" layoutX="319.0" layoutY="229.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXPasswordField>
-      <JFXTextField layoutX="319.0" layoutY="161.0">
+      <JFXTextField fx:id="nameInput" layoutX="319.0" layoutY="161.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXTextField>
-      <JFXTextField layoutX="319.0" layoutY="195.0">
+      <JFXTextField fx:id="surnameInput" layoutX="319.0" layoutY="195.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXTextField>
-      <JFXTextField layoutX="319.0" layoutY="263.0">
+      <JFXTextField fx:id="emailInput" layoutX="319.0" layoutY="263.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXTextField>
-      <JFXTextField layoutX="319.0" layoutY="296.0">
+      <JFXTextField fx:id="skypeInput" layoutX="319.0" layoutY="296.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXTextField>
-      <JFXTextField layoutX="319.0" layoutY="330.0">
+      <JFXTextField fx:id="phoneInput" layoutX="319.0" layoutY="330.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXTextField>
-      <JFXTextField layoutX="319.0" layoutY="364.0">
+      <JFXTextField fx:id="salaryInput" layoutX="319.0" layoutY="364.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXTextField>
-      <JFXCheckBox layoutX="109.0" layoutY="440.0" text="Администратор">
+      <JFXCheckBox fx:id="isAdminInput" layoutX="109.0" layoutY="440.0" text="Администратор">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXCheckBox>
-      <MenuButton layoutX="319.0" layoutY="398.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="146.0" text="Выберите">
+      <MenuButton fx:id="positionInput" layoutX="319.0" layoutY="398.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="146.0" text="Выберите">
         <items>
           <MenuItem text="Разработчик" />
           <MenuItem text="Старший разработчик" />

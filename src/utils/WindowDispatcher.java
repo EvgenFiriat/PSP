@@ -5,6 +5,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.image.Image;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -21,8 +23,19 @@ public class WindowDispatcher {
         }
     }
 
-    public static void popupModalWindow(String sceneID) {
-
+    public static void popupModalWindow(String sceneID, Stage parent) {
+        try {
+            Parent modalParent = FXMLLoader.load(WindowDispatcher.class.getResource(Constants.fxmlMapping.get(sceneID)));
+            Scene scene = new Scene(modalParent);
+            Stage modalWindow = new Stage();
+            modalWindow.setScene(scene);
+            modalWindow.initOwner(parent);
+            modalWindow.initModality(Modality.APPLICATION_MODAL);
+            parent.getIcons().add(new Image(WindowDispatcher.class.getResourceAsStream(Constants.WINDOW_ICON)));
+            modalWindow.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public static void showError(String title, String text) {
