@@ -38,8 +38,20 @@ public class WindowDispatcher {
         }
     }
 
-    public static void showError(String title, String text) {
+    public static void showErrorMessage(String title, String text) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setContentText(text);
+        alert.setHeaderText("");
+        alert.setResizable(true);
+        alert.onShownProperty().addListener(e -> {
+            Platform.runLater(() -> alert.setResizable(false));
+        });
+        alert.showAndWait();
+    }
+
+    public static void showSuccessMessage(String title, String text) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);
         alert.setContentText(text);
         alert.setHeaderText("");

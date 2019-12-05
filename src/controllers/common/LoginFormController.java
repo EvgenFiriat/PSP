@@ -44,15 +44,15 @@ public class LoginFormController implements IValidator {
                         WindowDispatcher.switchScene(Constants.USER_MAIN_WINDOW, window);
                     }
                 } else {
-                    WindowDispatcher.showError("Error", "Invalid credentials");
+                    WindowDispatcher.showErrorMessage("Error", "Invalid credentials");
                     emailInput.clear();
                     passwordInput.clear();
                 }
             } catch (IOException | ParseException e) {
-                WindowDispatcher.showError("Request error", "Connection refused");
+                WindowDispatcher.showErrorMessage("Request error", "Connection refused");
             }
         } else {
-            WindowDispatcher.showError("Invalid data", "Fields should not be empty");
+            WindowDispatcher.showErrorMessage("Invalid data", "Fields should not be empty");
         }
     }
 
