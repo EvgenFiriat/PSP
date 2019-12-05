@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public interface DBQueryHandler {
-    ResultSet list(JSONObject data);
+    ResultSet list();
 
     ResultSet get(JSONObject data);
 

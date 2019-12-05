@@ -4,12 +4,11 @@ import database.DBQueryHandler;
 import org.json.simple.JSONObject;
 
 import java.sql.ResultSet;
-import java.sql.SQLException;
 
 public class RequestDAO implements DBQueryHandler {
 
     @Override
-    public ResultSet list(JSONObject data) {
+    public ResultSet list() {
         return null;
     }
 

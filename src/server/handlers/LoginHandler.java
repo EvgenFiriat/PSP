@@ -11,7 +11,7 @@ public class LoginHandler implements IActionHandler {
     @Override
     public String handle(JSONObject data) {
         UserDAO userDAO = new UserDAO();
-        ResultSet result = userDAO.list(data);
+        ResultSet result = userDAO.authenticate(data);
         JSONObject response = new JSONObject();
 
         try {

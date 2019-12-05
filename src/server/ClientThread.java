@@ -4,6 +4,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import server.base.IActionHandler;
+import server.handlers.AddUserHandler;
 import server.handlers.LoginHandler;
 import utils.Constants;
 
@@ -54,6 +55,7 @@ public class ClientThread extends Thread {
     private void initHandlersMap() {
         this.handlersMap = new HashMap<>();
         this.handlersMap.put(Constants.ACTION_LOGIN, new LoginHandler());
+        this.handlersMap.put(Constants.ACTION_CREATE_USER, new AddUserHandler());
     }
 
     public BufferedWriter getWriter() {

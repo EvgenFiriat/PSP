@@ -6,9 +6,8 @@ import org.json.simple.JSONObject;
 import java.sql.ResultSet;
 
 public class UserStatusDAO implements DBQueryHandler {
-
     @Override
-    public ResultSet list(JSONObject data) {
+    public ResultSet list() {
         return null;
     }
 

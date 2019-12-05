@@ -8,7 +8,7 @@ import java.sql.ResultSet;
 public class UserRoleDAO implements DBQueryHandler {
 
     @Override
-    public ResultSet list(JSONObject data) {
+    public ResultSet list() {
         return null;
     }
 

@@ -4,6 +4,7 @@ import client.ClientConnection;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
+import controllers.base.IServerConnector;
 import controllers.base.IValidator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -18,7 +19,7 @@ import utils.WindowDispatcher;
 
 import java.io.IOException;
 
-public class LoginFormController implements IValidator {
+public class LoginFormController implements IValidator, IServerConnector {
     @FXML
     private JFXTextField emailInput;
 
@@ -56,7 +57,8 @@ public class LoginFormController implements IValidator {
         }
     }
 
-    private String buildRequestString() {
+    @Override
+    public String buildRequestString() {
         JSONObject request = new JSONObject();
         JSONObject data = new JSONObject();
         request.put("action", Constants.ACTION_LOGIN);
@@ -66,7 +68,8 @@ public class LoginFormController implements IValidator {
         return request.toJSONString() + "\n";
     }
 
-    private JSONObject requestServer() throws IOException, ParseException {
+    @Override
+    public JSONObject requestServer() throws IOException, ParseException {
         ClientConnection.getConnection();
         ClientConnection.getOut().write(this.buildRequestString());
         ClientConnection.getOut().flush();
