@@ -11,7 +11,7 @@
 
 <!-- https://colorscheme.ru/#5t221w0w0w0w0 -->
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="511.0" prefWidth="718.0" scaleShape="false" stylesheets="@../../../css/colors.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="511.0" prefWidth="718.0" scaleShape="false" stylesheets="@../../../css/colors.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.admin.AdminWindowController">
    <children>
       <AnchorPane layoutX="179.0" layoutY="-1.0" prefHeight="511.0" prefWidth="539.0">
          <children>

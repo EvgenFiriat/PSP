@@ -2,6 +2,7 @@ package server;
 
 import server.base.IActionHandler;
 import server.handlers.LoginHandler;
+import utils.Constants;
 
 import java.io.*;
 import java.net.Socket;
@@ -48,7 +49,7 @@ public class ClientThread extends Thread {
 
     private void initHandlersMap() {
         this.handlersMap = new HashMap<>();
-        this.handlersMap.put("actionLogin", new LoginHandler());
+        this.handlersMap.put(Constants.ACTION_LOGIN, new LoginHandler());
     }
 
     public BufferedWriter getWriter() {

@@ -7,12 +7,10 @@ import com.jfoenix.controls.JFXTextField;
 import controllers.base.IValidator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
-import utils.Config;
+import utils.Constants;
+import utils.WindowDispatcher;
 
 import java.io.IOException;
 
@@ -28,29 +26,21 @@ public class LoginFormController implements IValidator {
 
 
     public void handleSubmitEvent(ActionEvent actionEvent) throws IOException {
-
         if (this.isValid()) {
             ClientConnection.getConnection();
-            ClientConnection.getOut().write("actionLogin\n");
+            ClientConnection.getOut().write(Constants.ACTION_LOGIN + "\n");
             ClientConnection.getOut().flush();
             String response = ClientConnection.getIn().readLine();
 
             if (response.equals("success")) {
-
-                // TODO: create a separate utility
-                Parent adminParent = FXMLLoader.load(getClass().getResource(Config.fxmlMapping.get("AdminMainWindow")));
-                Scene adminWindow = new Scene(adminParent);
-
                 Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-                window.setScene(adminWindow);
-                window.show();
+                WindowDispatcher.switchScene(Constants.ADMIN_MAIN_WINDOW, window);
             } else {
                 System.out.println("error");
             }
         } else {
             System.out.println("Invalid data!");
         }
-
     }
 
     @Override
