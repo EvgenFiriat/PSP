@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXCheckBox?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="601.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane layoutY="-1.0" prefHeight="87.0" prefWidth="600.0" style="-fx-background-color: #1D2026;">
+         <children>
+            <Label layoutX="103.0" layoutY="25.0" text="Редактирование пользователя" textFill="#fffefe">
+               <font>
+                  <Font name="Noto Sans Arabic UI Bold" size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="513.0" layoutY="38.0" prefWidth="52.0" text="SMS App" textFill="WHITE">
+               <font>
+                  <Font name="Noto Sans Tamil Bold" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="551.0" layoutY="30.0" prefHeight="16.0" prefWidth="37.0" text="Admin" textFill="WHITE">
+               <font>
+                  <Font name="Noto Sans Tamil Bold" size="10.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <Label layoutX="109.0" layoutY="166.0" prefHeight="18.0" text="Имя" />
+      <Label layoutX="109.0" layoutY="200.0" prefHeight="18.0" text="Фамилия" />
+      <Label layoutX="109.0" layoutY="234.0" prefHeight="18.0" text="Пароль (по умолчанию)" />
+      <Label layoutX="109.0" layoutY="268.0" prefHeight="18.0" text="E-mail" />
+      <Label layoutX="109.0" layoutY="301.0" prefHeight="18.0" text="Skype" />
+      <Label layoutX="109.0" layoutY="335.0" prefHeight="18.0" text="Телефонный номер" />
+      <Label layoutX="109.0" layoutY="369.0" prefHeight="18.0" text="Заработная плата" />
+      <Label layoutX="109.0" layoutY="403.0" prefHeight="18.0" text="Позиция" />
+      <JFXButton layoutX="209.0" layoutY="484.0" prefHeight="37.0" prefWidth="183.0" style="-fx-background-color: #1D2026;" text="Сохранить" textFill="WHITE">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXPasswordField layoutX="319.0" layoutY="229.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXPasswordField>
+      <JFXTextField layoutX="319.0" layoutY="161.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXTextField>
+      <JFXTextField layoutX="319.0" layoutY="195.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXTextField>
+      <JFXTextField layoutX="319.0" layoutY="263.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXTextField>
+      <JFXTextField layoutX="319.0" layoutY="296.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXTextField>
+      <JFXTextField layoutX="319.0" layoutY="330.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXTextField>
+      <JFXTextField layoutX="319.0" layoutY="364.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXTextField>
+      <JFXCheckBox layoutX="109.0" layoutY="440.0" text="Администратор">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXCheckBox>
+      <MenuButton layoutX="319.0" layoutY="398.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="146.0" text="Выберите">
+        <items>
+          <MenuItem text="Разработчик" />
+          <MenuItem text="Старший разработчик" />
+        </items>
+      </MenuButton>
+   </children>
+</AnchorPane>

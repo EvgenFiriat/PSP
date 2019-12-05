@@ -1,6 +1,5 @@
 package launch;
 
-import com.sun.tools.javac.Main;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -15,7 +14,7 @@ public class ClientApp extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("../assets/fxml/Admin/CreateUserWindow/CreateUser.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("../assets/fxml/Admin/AdminWindow/AdminWindow.fxml"));
         primaryStage.setTitle("SMS App");
         primaryStage.getIcons().add(new Image(ClientApp.class.getResourceAsStream("../assets/img/icons/window-icon.png")));
         primaryStage.setScene(new Scene(root));

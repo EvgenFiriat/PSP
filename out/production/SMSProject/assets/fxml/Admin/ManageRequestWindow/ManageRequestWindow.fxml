@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="642.0" prefWidth="725.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane layoutY="-1.0" prefHeight="87.0" prefWidth="725.0" style="-fx-background-color: #1D2026;">
+         <children>
+            <Label layoutX="276.0" layoutY="25.0" text="Уведомления" textFill="#fffefe">
+               <font>
+                  <Font name="Noto Sans Arabic UI Bold" size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="636.0" layoutY="42.0" prefWidth="52.0" text="SMS App" textFill="WHITE">
+               <font>
+                  <Font name="Noto Sans Tamil Bold" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="674.0" layoutY="34.0" prefHeight="16.0" prefWidth="37.0" text="Admin" textFill="WHITE">
+               <font>
+                  <Font name="Noto Sans Tamil Bold" size="10.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <JFXButton layoutX="115.0" layoutY="544.0" prefHeight="28.0" prefWidth="156.0" style="-fx-background-color: green;" text="Принять" textFill="WHITE" />
+      <JFXButton layoutX="475.0" layoutY="544.0" prefHeight="28.0" prefWidth="156.0" style="-fx-background-color: red;" text="Отклонить" />
+      <TableView layoutX="45.0" layoutY="106.0" prefHeight="415.0" prefWidth="635.0">
+        <columns>
+          <TableColumn prefWidth="53.0" text="id" />
+          <TableColumn prefWidth="127.0" text="Отправитель" />
+            <TableColumn prefWidth="125.0" text="Тип запроса" />
+            <TableColumn prefWidth="329.0" text="Комментарий" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

@@ -1,15 +1,16 @@
 package launch;
 
-import java.lang.reflect.InvocationTargetException;
+import database.MySqlConnection;
+
+import java.sql.*;
 
 public class ServerApp {
+    private static MySqlConnection connection;
     public static void main(String[] args) {
-        try{
-            Class.forName("com.mysql.cj.jdbc.Driver").getDeclaredConstructor().newInstance();
-            System.out.println("Connection successful!");
-        } catch (InstantiationException | InvocationTargetException | NoSuchMethodException | IllegalAccessException | ClassNotFoundException e) {
-            System.err.println("Fail...");
-            System.err.println(e);
+        try {
+            connection = MySqlConnection.getConnection();
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
         }
     }
 }
