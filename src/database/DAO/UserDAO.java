@@ -19,17 +19,17 @@ public class UserDAO implements DBQueryHandler {
     }
 
     @Override
-    public void add() throws SQLException {
+    public void add(String data) throws SQLException {
 
     }
 
     @Override
-    public void update() throws SQLException {
+    public void update(String data) throws SQLException {
 
     }
 
     @Override
-    public void delete() throws SQLException {
+    public void delete(String data) throws SQLException {
 
     }
 }

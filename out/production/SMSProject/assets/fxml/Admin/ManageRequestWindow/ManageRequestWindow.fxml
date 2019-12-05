@@ -7,9 +7,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="642.0" prefWidth="725.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="642.0" prefWidth="725.0" styleClass="main-color-light" stylesheets="@../../../css/colors.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <AnchorPane layoutY="-1.0" prefHeight="87.0" prefWidth="725.0" style="-fx-background-color: #1D2026;">
+      <AnchorPane layoutY="-1.0" prefHeight="87.0" prefWidth="725.0" styleClass="main-color">
          <children>
             <Label layoutX="276.0" layoutY="25.0" text="Уведомления" textFill="#fffefe">
                <font>
@@ -28,8 +28,8 @@
             </Label>
          </children>
       </AnchorPane>
-      <JFXButton layoutX="115.0" layoutY="544.0" prefHeight="28.0" prefWidth="156.0" style="-fx-background-color: green;" text="Принять" textFill="WHITE" />
-      <JFXButton layoutX="475.0" layoutY="544.0" prefHeight="28.0" prefWidth="156.0" style="-fx-background-color: red;" text="Отклонить" />
+      <JFXButton layoutX="115.0" layoutY="544.0" prefHeight="28.0" prefWidth="156.0" styleClass="sub-color" text="Принять" textFill="WHITE" />
+      <JFXButton layoutX="475.0" layoutY="544.0" prefHeight="28.0" prefWidth="156.0" styleClass="main-color" text="Отклонить" textFill="WHITE" />
       <TableView layoutX="45.0" layoutY="106.0" prefHeight="415.0" prefWidth="635.0">
         <columns>
           <TableColumn prefWidth="53.0" text="id" />

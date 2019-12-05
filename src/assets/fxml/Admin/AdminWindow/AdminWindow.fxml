@@ -9,11 +9,11 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="511.0" prefWidth="718.0" scaleShape="false" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="511.0" prefWidth="718.0" scaleShape="false" stylesheets="@../../../css/colors.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <AnchorPane layoutX="179.0" layoutY="-1.0" prefHeight="511.0" prefWidth="539.0">
          <children>
-            <Pane layoutY="1.0" prefHeight="511.0" prefWidth="539.0">
+            <Pane layoutY="1.0" prefHeight="511.0" prefWidth="539.0" styleClass="main-color-light">
                <children>
                   <JFXTextField layoutX="20.0" layoutY="32.0" prefHeight="18.0" prefWidth="140.0" promptText="Поиск сотрудников">
                      <font>
@@ -96,7 +96,7 @@
             </Pane>
          </children>
       </AnchorPane>
-      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="511.0" prefWidth="178.0" style="-fx-background-color: #1D2026;">
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="511.0" prefWidth="178.0" styleClass="main-color">
          <children>
             <Pane prefHeight="85.0" prefWidth="178.0">
                <children>

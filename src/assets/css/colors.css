@@ -1,0 +1,12 @@
+.main-color {
+    -fx-background-color: #980023;
+    -fx-color: white;
+}
+
+.main-color-light {
+    -fx-background-color: #fff2f6;
+}
+
+.sub-color {
+    -fx-background-color: #569700;
+}
