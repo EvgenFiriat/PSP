@@ -4,7 +4,8 @@ import server.base.IActionHandler;
 
 public class LoginHandler implements IActionHandler {
     @Override
-    public void handle() {
-        System.out.println("Login...");
+    public String handle() {
+        System.out.println("Login attempt...");
+        return "success\n";
     }
 }

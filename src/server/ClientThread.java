@@ -33,8 +33,9 @@ public class ClientThread extends Thread {
         while (isRunning) {
             try {
                 JSONDataString = in.readLine();
-                handlersMap.get("actionLogin").handle();
-                System.out.println(JSONDataString);
+                String JSONResult = handlersMap.get(JSONDataString).handle();
+                out.write(JSONResult);
+                out.flush();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -46,7 +47,7 @@ public class ClientThread extends Thread {
     }
 
     private void initHandlersMap() {
-        this.handlersMap = new HashMap<String, IActionHandler>();
+        this.handlersMap = new HashMap<>();
         this.handlersMap.put("actionLogin", new LoginHandler());
     }
 
