@@ -1,13 +1,14 @@
 package database.DAO;
 
 import database.DBQueryHandler;
+import org.json.simple.JSONObject;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class ProjectDAO implements DBQueryHandler {
     @Override
-    public ResultSet list(String data) throws SQLException {
+    public ResultSet list(JSONObject data) throws SQLException {
         return null;
     }
 

@@ -1,33 +1,34 @@
 package database.DAO;
 
 import database.DBQueryHandler;
+import org.json.simple.JSONObject;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class UserRoleDAO implements DBQueryHandler {
     @Override
-    public ResultSet list(String data) throws SQLException {
+    public ResultSet list(JSONObject data) throws SQLException {
         return null;
     }
 
     @Override
-    public ResultSet get(String data) throws SQLException {
+    public ResultSet get(JSONObject data) throws SQLException {
         return null;
     }
 
     @Override
-    public void add(String data) throws SQLException {
+    public void add(JSONObject data) throws SQLException {
 
     }
 
     @Override
-    public void update(String data) throws SQLException {
+    public void update(JSONObject data) throws SQLException {
 
     }
 
     @Override
-    public void delete(String data) throws SQLException {
+    public void delete(JSONObject data) throws SQLException {
 
     }
 }
