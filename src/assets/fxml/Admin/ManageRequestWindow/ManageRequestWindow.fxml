@@ -32,10 +32,10 @@
       <JFXButton layoutX="475.0" layoutY="544.0" prefHeight="28.0" prefWidth="156.0" styleClass="main-color" text="Отклонить" textFill="WHITE" />
       <TableView layoutX="45.0" layoutY="106.0" prefHeight="415.0" prefWidth="635.0">
         <columns>
-          <TableColumn prefWidth="53.0" text="id" />
-          <TableColumn prefWidth="127.0" text="Отправитель" />
-            <TableColumn prefWidth="125.0" text="Тип запроса" />
-            <TableColumn prefWidth="329.0" text="Комментарий" />
+          <TableColumn editable="false" prefWidth="53.0" text="id" visible="false" />
+          <TableColumn editable="false" prefWidth="127.0" text="Отправитель" />
+            <TableColumn editable="false" prefWidth="125.0" text="Тип запроса" />
+            <TableColumn editable="false" prefWidth="382.0" text="Комментарий" />
         </columns>
       </TableView>
    </children>

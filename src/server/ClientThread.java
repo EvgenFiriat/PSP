@@ -1,7 +1,11 @@
 package server;
 
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import server.base.IActionHandler;
 import server.handlers.LoginHandler;
+import utils.Constants;
 
 import java.io.*;
 import java.net.Socket;
@@ -33,9 +37,11 @@ public class ClientThread extends Thread {
         while (isRunning) {
             try {
                 JSONDataString = in.readLine();
-                handlersMap.get("actionLogin").handle();
-                System.out.println(JSONDataString);
-            } catch (IOException e) {
+                JSONObject request = (JSONObject) new JSONParser().parse(JSONDataString);
+                String JSONResult = handlersMap.get((String)request.get("action")).handle((JSONObject)request.get("data"));
+                out.write(JSONResult);
+                out.flush();
+            } catch (IOException | ParseException e) {
                 e.printStackTrace();
             }
         }
@@ -46,8 +52,8 @@ public class ClientThread extends Thread {
     }
 
     private void initHandlersMap() {
-        this.handlersMap = new HashMap<String, IActionHandler>();
-        this.handlersMap.put("actionLogin", new LoginHandler());
+        this.handlersMap = new HashMap<>();
+        this.handlersMap.put(Constants.ACTION_LOGIN, new LoginHandler());
     }
 
     public BufferedWriter getWriter() {

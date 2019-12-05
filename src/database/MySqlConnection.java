@@ -24,10 +24,10 @@ public final class MySqlConnection {
         this.connection = DriverManager.getConnection(url, username, password);
     }
 
-    public static MySqlConnection getConnection() throws SQLException, ClassNotFoundException {
+    public static Connection getConnection() throws SQLException, ClassNotFoundException {
         if (instance == null) {
             instance = new MySqlConnection();
         }
-        return instance;
+        return instance.connection;
     }
 }

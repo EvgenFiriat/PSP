@@ -4,31 +4,31 @@ import database.DBQueryHandler;
 import org.json.simple.JSONObject;
 
 import java.sql.ResultSet;
-import java.sql.SQLException;
 
 public class UserRoleDAO implements DBQueryHandler {
+
     @Override
-    public ResultSet list(JSONObject data) throws SQLException {
+    public ResultSet list(JSONObject data) {
         return null;
     }
 
     @Override
-    public ResultSet get(JSONObject data) throws SQLException {
+    public ResultSet get(JSONObject data) {
         return null;
     }
 
     @Override
-    public void add(JSONObject data) throws SQLException {
+    public void add(JSONObject data) {
 
     }
 
     @Override
-    public void update(JSONObject data) throws SQLException {
+    public void update(JSONObject data) {
 
     }
 
     @Override
-    public void delete(JSONObject data) throws SQLException {
+    public void delete(JSONObject data) {
 
     }
 }
