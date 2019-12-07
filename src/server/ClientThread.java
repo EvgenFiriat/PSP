@@ -7,11 +7,11 @@ import server.base.IActionHandler;
 import server.handlers.AddUserHandler;
 import server.handlers.LoginHandler;
 import server.handlers.init.InitAddUserModalHandler;
+import server.handlers.init.InitUserWindowHandler;
 import utils.Constants;
 
 import java.io.*;
 import java.net.Socket;
-import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -59,6 +59,7 @@ public class ClientThread extends Thread {
         this.handlersMap.put(Constants.ACTION_LOGIN, new LoginHandler());
         this.handlersMap.put(Constants.ACTION_CREATE_USER, new AddUserHandler());
         this.handlersMap.put(Constants.ACTION_INIT_ADD_USER_MODAL, new InitAddUserModalHandler());
+        this.handlersMap.put(Constants.ACTION_INIT_USER_WINDOW, new InitUserWindowHandler());
     }
 
     public BufferedWriter getWriter() {

@@ -115,7 +115,7 @@ public class AddUserController extends ServerConnector implements IValidator, In
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         JSONObject initObject = new JSONObject();
-        initObject.put("action", "InitAddUserModal");
+        initObject.put("action", Constants.ACTION_INIT_ADD_USER_MODAL);
         try {
             JSONObject initData = this.requestServer(initObject.toJSONString() + "\n");
             JSONArray choices = (JSONArray) initData.get("menuChoices");

@@ -51,6 +51,16 @@ public class UserDAO implements DBQueryHandler {
         }
     }
 
+    public ResultSet getUserWindowContext(Long id) throws SQLException, ClassNotFoundException {
+        String sql = "SELECT user.name as name, surname, email, skype, role_name as position, phone_number as phone, project.name as project FROM user " +
+                "JOIN user_position on user.position_id = user_position.id " +
+                "JOIN project on user.project_id = project.id " +
+                "WHERE user.id = ?";
+        PreparedStatement query = MySqlConnection.getConnection().prepareStatement(sql);
+        query.setLong(1, id);
+        return query.executeQuery();
+    }
+
     @Override
     public ResultSet get(JSONObject data) {
         return null;

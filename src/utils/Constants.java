@@ -9,6 +9,7 @@ public class Constants {
 
     // Init actions
     public static final String ACTION_INIT_ADD_USER_MODAL = "InitAddUserModal";
+    public static final String ACTION_INIT_USER_WINDOW = "InitUserWindow";
 
     // Icons
     public static final String WINDOW_ICON = "/assets/img/icons/window-icon.png";
