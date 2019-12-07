@@ -17,16 +17,11 @@ public class ProjectDAO implements DBQueryHandler {
     }
 
     @Override
-    public ResultSet get(JSONObject data) {
+    public ResultSet get(JSONObject data) throws SQLException, ClassNotFoundException {
         String sql = "SELECT * FROM project WHERE name = ?";
-        try {
-            PreparedStatement query = MySqlConnection.getConnection().prepareStatement(sql);
-            query.setString(1, "Smile Direct Club");
-            return query.executeQuery();
-        } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
-            return null;
-        }
+        PreparedStatement query = MySqlConnection.getConnection().prepareStatement(sql);
+        query.setString(1, "Smile Direct Club");
+        return query.executeQuery();
     }
 
     @Override

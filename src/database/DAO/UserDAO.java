@@ -24,13 +24,14 @@ public class UserDAO implements DBQueryHandler {
     }
 
     public boolean isUserUnique(JSONObject data) {
-        String sql = "SELECT * FROM user WHERE name = ? AND surname = ? AND email = ?";
+        String sql = "SELECT * FROM user WHERE (name = ? AND surname = ?) OR email = ?";
         try {
             PreparedStatement query = MySqlConnection.getConnection().prepareStatement(sql);
             query.setString(1, (String) data.get("name"));
             query.setString(2, (String) data.get("surname"));
             query.setString(3, (String) data.get("email"));
-            return !query.executeQuery().next();
+            boolean hasEntries = query.executeQuery().next();
+            return !hasEntries;
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
             return false;
@@ -56,7 +57,7 @@ public class UserDAO implements DBQueryHandler {
     }
 
     @Override
-    public void add(JSONObject data) {
+    public void add(JSONObject data) throws SQLException, ClassNotFoundException {
         ResultSet project = new ProjectDAO().get(data);
         String sql = "INSERT user(" +
                 "name, " +
@@ -69,23 +70,19 @@ public class UserDAO implements DBQueryHandler {
                 "is_admin, " +
                 "position_id, " +
                 "project_id) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        try {
-            project.next();
-            PreparedStatement query = MySqlConnection.getConnection().prepareStatement(sql);
-            query.setString(1, (String) data.get("name"));
-            query.setString(2, (String) data.get("surname"));
-            query.setString(3, (String) data.get("email"));
-            query.setString(4, (String) data.get("password"));
-            query.setString(5, (String) data.get("skype"));
-            query.setString(6, (String) data.get("phone"));
-            query.setDouble(7, (Double) data.get("salary"));
-            query.setBoolean(8, (Boolean) data.get("isAdmin"));
-            query.setInt(9, 1);
-            query.setInt(10, project.getInt("id"));
-            query.executeUpdate();
-        } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
-        }
+        project.next();
+        PreparedStatement query = MySqlConnection.getConnection().prepareStatement(sql);
+        query.setString(1, (String) data.get("name"));
+        query.setString(2, (String) data.get("surname"));
+        query.setString(3, (String) data.get("email"));
+        query.setString(4, (String) data.get("password"));
+        query.setString(5, (String) data.get("skype"));
+        query.setString(6, (String) data.get("phone"));
+        query.setDouble(7, (Double) data.get("salary"));
+        query.setBoolean(8, (Boolean) data.get("isAdmin"));
+        query.setInt(9, 1);
+        query.setInt(10, project.getInt("id"));
+        query.executeUpdate();
     }
 
     @Override

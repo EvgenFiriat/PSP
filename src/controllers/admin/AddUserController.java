@@ -1,26 +1,28 @@
 package controllers.admin;
 
-import client.ClientConnection;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
-import controllers.base.IServerConnector;
 import controllers.base.IValidator;
+import controllers.base.ServerConnector;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.stage.Stage;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import utils.Constants;
 import utils.WindowDispatcher;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class AddUserController implements IValidator, IServerConnector {
+public class AddUserController extends ServerConnector implements IValidator, Initializable {
     @FXML
     public JFXButton submitButton;
 
@@ -53,12 +55,6 @@ public class AddUserController implements IValidator, IServerConnector {
 
     private String selectedPosition;
 
-    public void initialize() {
-        positionInput.getItems().forEach((MenuItem item) -> item.setOnAction(actionEvent -> {
-            this.selectedPosition = item.getText().trim();
-            positionInput.setText(selectedPosition);
-        }));
-    }
 
     public void submitUser(ActionEvent actionEvent) {
         if (this.isValid()) {
@@ -90,17 +86,7 @@ public class AddUserController implements IValidator, IServerConnector {
     }
 
     @Override
-    public JSONObject requestServer() throws IOException, ParseException {
-        // TODO: How to deal with duplicate code?
-        ClientConnection.getConnection();
-        ClientConnection.getOut().write(this.buildRequestString());
-        ClientConnection.getOut().flush();
-        String responseString = ClientConnection.getIn().readLine();
-        return  (JSONObject) new JSONParser().parse(responseString);
-    }
-
-    @Override
-    public String buildRequestString() {
+    protected String buildRequestString() {
         JSONObject obj = new JSONObject();
         JSONObject data = new JSONObject();
         data.put("name", nameInput.getText().trim());
@@ -115,5 +101,22 @@ public class AddUserController implements IValidator, IServerConnector {
         obj.put("action", Constants.ACTION_CREATE_USER);
         obj.put("data", data);
         return obj.toJSONString() + "\n";
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        JSONObject initObject = new JSONObject();
+        initObject.put("action", "InitAddUserModal");
+        try {
+            JSONObject initData = this.requestServer(initObject.toJSONString() + "\n");
+            JSONArray choices = (JSONArray) initData.get("menuChoices");
+            choices.forEach((Object item) -> positionInput.getItems().add(new MenuItem((String)item)));
+            positionInput.getItems().forEach((MenuItem item) -> item.setOnAction(actionEvent -> {
+                this.selectedPosition = item.getText().trim();
+                positionInput.setText(selectedPosition);
+            }));
+        } catch (IOException | ParseException e) {
+            WindowDispatcher.showErrorMessage("Error", "Не удалось загрузить данные с сервера");
+        }
     }
 }

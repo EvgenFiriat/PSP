@@ -8,9 +8,9 @@ import java.sql.SQLException;
 public interface DBQueryHandler {
     ResultSet list();
 
-    ResultSet get(JSONObject data);
+    ResultSet get(JSONObject data) throws SQLException, ClassNotFoundException;
 
-    void add(JSONObject data);
+    void add(JSONObject data) throws SQLException, ClassNotFoundException;
 
     void update(JSONObject data);
 

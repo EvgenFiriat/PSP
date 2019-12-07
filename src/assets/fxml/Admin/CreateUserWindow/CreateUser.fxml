@@ -7,7 +7,6 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
@@ -85,11 +84,6 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXCheckBox>
-      <MenuButton fx:id="positionInput" layoutX="319.0" layoutY="398.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="146.0" text="Выберите">
-        <items>
-          <MenuItem text="Разработчик" />
-          <MenuItem text="Старший разработчик" />
-        </items>
-      </MenuButton>
+      <MenuButton fx:id="positionInput" layoutX="319.0" layoutY="398.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="146.0" text="Выберите" />
    </children>
 </AnchorPane>
