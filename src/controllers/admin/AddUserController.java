@@ -6,6 +6,7 @@ import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import controllers.base.IValidator;
 import controllers.base.ServerConnector;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -57,23 +58,31 @@ public class AddUserController extends ServerConnector implements IValidator, In
 
 
     public void submitUser(ActionEvent actionEvent) {
-        if (this.isValid()) {
-            JSONObject responseObj = null;
-            try {
-                responseObj = this.requestServer();
-                if ((Boolean) responseObj.get("success")) {
-                    Stage currentWindow = (Stage) submitButton.getScene().getWindow();
-                    WindowDispatcher.showSuccessMessage("Success", "User added");
-                    currentWindow.close();
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                if (isValid()) {
+                    JSONObject responseObj = null;
+                    try {
+                        responseObj = requestServer();
+                        submitButton.setDisable(true);
+                        if ((Boolean) responseObj.get("success")) {
+                            Stage currentWindow = (Stage) submitButton.getScene().getWindow();
+                            WindowDispatcher.showSuccessMessage("Success", "User added");
+                            currentWindow.close();
+                        } else {
+                            WindowDispatcher.showErrorMessage("Ошибка", (String) responseObj.get("errorMessage"));
+                        }
+                    } catch (IOException | ParseException e) {
+                        WindowDispatcher.showErrorMessage("Ошибка соединения", "В подкючении отказано");
+                    } finally {
+                        submitButton.setDisable(false);
+                    }
                 } else {
-                    WindowDispatcher.showErrorMessage("Ошибка", (String) responseObj.get("errorMessage"));
+                    WindowDispatcher.showErrorMessage("Неверные данные", "Проверьте, пожалуйста, валидность ваших данных");
                 }
-            } catch (IOException | ParseException e) {
-                WindowDispatcher.showErrorMessage("Ошибка соединения", "В подкючении отказано");
             }
-        } else {
-            WindowDispatcher.showErrorMessage("Неверные данные", "Проверьте, пожалуйста, валидность ваших данных");
-        }
+        });
     }
 
     @Override

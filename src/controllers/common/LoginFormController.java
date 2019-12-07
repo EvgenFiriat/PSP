@@ -5,6 +5,7 @@ import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import controllers.base.IValidator;
 import controllers.base.ServerConnector;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -29,30 +30,38 @@ public class LoginFormController extends ServerConnector implements IValidator {
 
 
     public void handleSubmitEvent(ActionEvent actionEvent) {
-        if (this.isValid()) {
-            JSONObject responseObj = null;
-            try {
-                responseObj = this.requestServer();
-                if ((Boolean) responseObj.get("success")) {
-                    SessionStorage.setCurrentUserId((Long)responseObj.get("user_id"));
-                    Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-                    if (responseObj.get("role").equals("admin")) {
-                        WindowDispatcher.switchScene(Constants.ADMIN_MAIN_WINDOW, window);
-                    }
-                    else {
-                        WindowDispatcher.switchScene(Constants.USER_MAIN_WINDOW, window);
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                if (isValid()) {
+                    JSONObject responseObj = null;
+                    try {
+                        responseObj = requestServer();
+                        submitButton.setDisable(true);
+                        if ((Boolean) responseObj.get("success")) {
+                            SessionStorage.setCurrentUserId((Long)responseObj.get("user_id"));
+                            Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+                            if (responseObj.get("role").equals("admin")) {
+                                WindowDispatcher.switchScene(Constants.ADMIN_MAIN_WINDOW, window);
+                            }
+                            else {
+                                WindowDispatcher.switchScene(Constants.USER_MAIN_WINDOW, window);
+                            }
+                        } else {
+                            WindowDispatcher.showErrorMessage("Error", "Invalid credentials");
+                            emailInput.clear();
+                            passwordInput.clear();
+                        }
+                    } catch (IOException | ParseException e) {
+                        WindowDispatcher.showErrorMessage("Request error", "Connection refused");
+                    } finally {
+                        submitButton.setDisable(false);
                     }
                 } else {
-                    WindowDispatcher.showErrorMessage("Error", "Invalid credentials");
-                    emailInput.clear();
-                    passwordInput.clear();
+                    WindowDispatcher.showErrorMessage("Invalid data", "Fields should not be empty");
                 }
-            } catch (IOException | ParseException e) {
-                WindowDispatcher.showErrorMessage("Request error", "Connection refused");
             }
-        } else {
-            WindowDispatcher.showErrorMessage("Invalid data", "Fields should not be empty");
-        }
+        });
     }
 
     @Override
