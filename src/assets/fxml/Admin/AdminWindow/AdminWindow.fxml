@@ -138,7 +138,7 @@
                   <Font size="10.0" />
                </font>
             </JFXButton>
-            <JFXButton layoutX="19.0" layoutY="235.0" prefHeight="28.0" prefWidth="140.0" ripplerFill="#070707" text="Сотрудники" textFill="WHITE">
+            <JFXButton fx:id="showStaffButton" layoutX="19.0" layoutY="235.0" onAction="#showStaffWindow" prefHeight="28.0" prefWidth="140.0" ripplerFill="#070707" text="Сотрудники" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>

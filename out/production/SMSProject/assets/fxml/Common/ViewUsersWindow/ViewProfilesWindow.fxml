@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="672.0" prefWidth="950.0" styleClass="main-color-light" stylesheets="@../css/colors.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="672.0" prefWidth="950.0" styleClass="main-color-light" stylesheets="@../../../css/colors.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.common.ViewUsersWindowController">
    <children>
       <AnchorPane layoutY="-2.0" prefHeight="88.0" prefWidth="950.0" styleClass="main-color">
          <children>
@@ -42,6 +42,7 @@
       </JFXButton>
       <TableView fx:id="usersTable" layoutX="17.0" layoutY="87.0" prefHeight="515.0" prefWidth="914.0">
         <columns>
+            <TableColumn fx:id="idColumn" editable="false" prefWidth="121.0" resizable="false" text="id" visible="false" />
           <TableColumn fx:id="columnName" editable="false" prefWidth="121.0" resizable="false" text="Имя" />
           <TableColumn fx:id="surnameColumn" editable="false" prefWidth="194.0" resizable="false" text="Фамилия" />
             <TableColumn fx:id="emailColumn" editable="false" prefWidth="212.0" resizable="false" text="Почта" />

@@ -3,6 +3,15 @@ package utils;
 public class SessionStorage {
     private static Long CURRENT_USER_ID;
     private static Long VIEWED_PROFILE_ID;
+    private static boolean IS_ADMIN;
+
+    public static boolean isAdmin() {
+        return IS_ADMIN;
+    }
+
+    public static void setIsAdmin(boolean isAdmin) {
+        IS_ADMIN = isAdmin;
+    }
 
     public static Long getViewedProfileId() {
         return VIEWED_PROFILE_ID;

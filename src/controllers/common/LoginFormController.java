@@ -89,9 +89,11 @@ public class LoginFormController extends ServerConnector implements IValidator {
 
     private void personalizeUserWindow(String role, Stage window) {
         if (role.equals("admin")) {
+            SessionStorage.setIsAdmin(true);
             WindowDispatcher.switchScene(Constants.ADMIN_MAIN_WINDOW, window);
         }
         else {
+            SessionStorage.setIsAdmin(false);
             WindowDispatcher.switchScene(Constants.USER_MAIN_WINDOW, window);
         }
     }

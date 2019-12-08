@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
@@ -17,11 +16,6 @@
          <children>
             <Pane layoutY="1.0" prefHeight="511.0" prefWidth="539.0" styleClass="main-color-light">
                <children>
-                  <JFXTextField layoutX="20.0" layoutY="32.0" prefHeight="18.0" prefWidth="140.0" promptText="Поиск сотрудников">
-                     <font>
-                        <Font name="Noto Sans Arabic UI Regular" size="10.0" />
-                     </font>
-                  </JFXTextField>
                   <Label fx:id="userNameLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="215.0" layoutY="26.0" prefHeight="93.0" prefWidth="291.0" textAlignment="CENTER">
                      <font>
                         <Font name="Noto Naskh Arabic UI Bold" size="22.0" />
@@ -114,7 +108,7 @@
                   </Label>
                </children>
             </Pane>
-            <JFXButton defaultButton="true" layoutX="19.0" layoutY="155.0" prefHeight="28.0" prefWidth="140.0" ripplerFill="#070707" text="Профиль" textFill="WHITE" underline="true">
+            <JFXButton fx:id="homeProfileButton" defaultButton="true" layoutX="19.0" layoutY="155.0" prefHeight="28.0" prefWidth="140.0" ripplerFill="#070707" text="Профиль" textFill="WHITE" underline="true">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></JFXButton>
@@ -122,11 +116,11 @@
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></JFXButton>
-            <JFXButton layoutX="19.0" layoutY="242.0" prefHeight="28.0" prefWidth="140.0" ripplerFill="#070707" text="Вне офиса" textFill="WHITE">
+            <JFXButton layoutX="19.0" layoutY="275.0" prefHeight="28.0" prefWidth="140.0" ripplerFill="#070707" text="Вне офиса" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></JFXButton>
-            <JFXButton layoutX="19.0" layoutY="285.0" prefHeight="28.0" prefWidth="140.0" ripplerFill="#070707" text="Уведомления (1)" textFill="WHITE">
+            <JFXButton layoutX="19.0" layoutY="318.0" prefHeight="28.0" prefWidth="140.0" ripplerFill="#070707" text="Уведомления (1)" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -143,6 +137,11 @@
                <font>
                   <Font size="10.0" />
                </font>
+            </JFXButton>
+            <JFXButton fx:id="showStaffButton" layoutX="19.0" layoutY="235.0" onAction="#showStaffWindow" prefHeight="28.0" prefWidth="140.0" ripplerFill="#070707" text="Сотрудники" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </JFXButton>
          </children>
       </AnchorPane>

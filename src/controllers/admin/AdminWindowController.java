@@ -1,5 +1,6 @@
 package controllers.admin;
 
+import com.jfoenix.controls.JFXButton;
 import controllers.base.IPersonalized;
 import controllers.base.IValidator;
 import controllers.base.ServerConnector;
@@ -24,6 +25,9 @@ public class AdminWindowController extends ServerConnector implements IValidator
 
     @FXML
     public Label userNameLabel;
+    public JFXButton homeProfileButton;
+    public JFXButton showStaffButton;
+    public JFXButton addUserButton;
 
     @FXML
     private Label emailLabel;
@@ -108,5 +112,10 @@ public class AdminWindowController extends ServerConnector implements IValidator
                 }
             }
         }).start();
+    }
+
+    public void showStaffWindow(ActionEvent actionEvent) {
+        Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        WindowDispatcher.popupModalWindow(Constants.VIEW_USERS_WINDOW, window);
     }
 }
