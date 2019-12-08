@@ -99,6 +99,15 @@ public class LoginFormController extends ServerConnector implements IValidator {
     }
 
     private void handleSuccessInit(JSONObject responseObj, Stage window) {
+        if ((Boolean) responseObj.get("isBanned")) {
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    WindowDispatcher.showErrorMessage("Ошибка", "Вы заблокированы, свяжитесь с аминистратором");
+                }
+            });
+            return;
+        }
         Long userID = (Long)responseObj.get("user_id");
         String role = (String)responseObj.get("role");
         SessionStorage.setCurrentUserId(userID);

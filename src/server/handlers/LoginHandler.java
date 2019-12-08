@@ -20,6 +20,7 @@ public class LoginHandler implements IActionHandler {
                 response.put("user_id", result.getInt("user.id"));
                 String role = result.getBoolean("is_admin") ? "admin": "user";
                 response.put("role", role);
+                response.put("isBanned", result.getBoolean("is_banned"));
             } else {
                 response.put("success", false);
             }

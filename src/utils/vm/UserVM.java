@@ -10,14 +10,16 @@ public class UserVM {
     private String email;
     private String position;
     private String projectName;
+    private Boolean isBanned;
 
     public UserVM(JSONObject dataObj) {
         this.id = (Long) dataObj.get("id");
         this.name = (String) dataObj.get("name");
         this.surname = (String) dataObj.get("surname");
-        this.email = (String) dataObj.get("position");
+        this.email = (String) dataObj.get("email");
         this.position = (String) dataObj.get("position");
         this.projectName = (String) dataObj.get("projectName");
+        this.isBanned = (Boolean) dataObj.get("isBanned");
     }
 
     public String getName() {
@@ -66,5 +68,9 @@ public class UserVM {
 
     public Long getId() {
         return id;
+    }
+
+    public Boolean getBanned() {
+        return isBanned;
     }
 }

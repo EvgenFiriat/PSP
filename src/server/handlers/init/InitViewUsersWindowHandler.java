@@ -24,6 +24,7 @@ public class InitViewUsersWindowHandler implements IActionHandler {
                 serializedUser.put("email", result.getString("email"));
                 serializedUser.put("projectName", result.getString("project"));
                 serializedUser.put("position", result.getString("position"));
+                serializedUser.put("isBanned", result.getBoolean("is_banned"));
                 users.add(serializedUser);
             }
             responseObj.put("users", users);

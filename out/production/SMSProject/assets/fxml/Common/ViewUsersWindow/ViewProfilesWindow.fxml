@@ -13,7 +13,7 @@
    <children>
       <AnchorPane layoutY="-2.0" prefHeight="88.0" prefWidth="950.0" styleClass="main-color">
          <children>
-            <Label layoutX="326.0" layoutY="29.0" prefHeight="28.0" prefWidth="154.0" text="Сотрудники" textFill="#fffefe">
+            <Label layoutX="398.0" layoutY="30.0" prefHeight="28.0" prefWidth="154.0" text="Сотрудники" textFill="#fffefe">
                <font>
                   <Font name="Noto Sans Arabic UI Bold" size="24.0" />
                </font>
@@ -30,12 +30,12 @@
             </JFXTextField>
          </children>
       </AnchorPane>
-      <JFXButton fx:id="viewProfileButton" layoutX="254.0" layoutY="614.0" onAction="#viewUserProfile" prefHeight="28.0" prefWidth="117.0" styleClass="sub-color" text="Просмотреть" textFill="WHITE">
+      <JFXButton fx:id="viewProfileButton" layoutX="305.0" layoutY="616.0" onAction="#viewUserProfile" prefHeight="28.0" prefWidth="117.0" styleClass="sub-color" text="Просмотреть" textFill="WHITE">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <JFXButton fx:id="blockUserButton" layoutX="476.0" layoutY="614.0" onAction="#blockUser" prefHeight="28.0" prefWidth="117.0" styleClass="main-color" text="Заблокировать" textFill="WHITE">
+      <JFXButton fx:id="blockUserButton" layoutX="527.0" layoutY="616.0" onAction="#blockUser" prefHeight="28.0" prefWidth="117.0" styleClass="main-color" text="Заблокировать" textFill="WHITE">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>

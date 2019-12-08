@@ -61,8 +61,15 @@ public class UserDAO implements DBQueryHandler {
         return query.executeQuery();
     }
 
+    public void blockUser(JSONObject data) throws SQLException, ClassNotFoundException {
+        String sql = "UPDATE user SET is_banned=TRUE WHERE user.id = ?";
+        PreparedStatement query = MySqlConnection.getConnection().prepareStatement(sql);
+        query.setLong(1, (Long) data.get("userID"));
+        query.executeUpdate();
+    }
+
     public ResultSet getUsers() throws SQLException, ClassNotFoundException {
-        String sql = "SELECT user.id, user.name as name, surname, email, role_name as position, project.name as project FROM user " +
+        String sql = "SELECT user.id, user.name as name, surname, email, role_name as position, project.name as project, is_banned FROM user " +
                 "JOIN user_position on user.position_id = user_position.id " +
                 "JOIN project on user.project_id = project.id";
         PreparedStatement query = MySqlConnection.getConnection().prepareStatement(sql);

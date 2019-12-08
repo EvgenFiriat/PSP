@@ -80,6 +80,10 @@ public class AdminWindowController extends ServerConnector implements IValidator
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        this.displayUserData();
+    }
+
+    private void displayUserData() {
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -117,5 +121,10 @@ public class AdminWindowController extends ServerConnector implements IValidator
     public void showStaffWindow(ActionEvent actionEvent) {
         Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         WindowDispatcher.popupModalWindow(Constants.VIEW_USERS_WINDOW, window);
+        if (!SessionStorage.getNewViewedProfileId().equals(SessionStorage.getViewedProfileId())) {
+            SessionStorage.setViewedProfileId(SessionStorage.getNewViewedProfileId());
+            SessionStorage.setNewViewedProfileId(null);
+            this.displayUserData();
+        }
     }
 }

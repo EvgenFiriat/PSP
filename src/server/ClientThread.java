@@ -5,6 +5,7 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import server.base.IActionHandler;
 import server.handlers.AddUserHandler;
+import server.handlers.BlockUserHandler;
 import server.handlers.LoginHandler;
 import server.handlers.init.InitAddUserModalHandler;
 import server.handlers.init.InitUserWindowHandler;
@@ -58,6 +59,7 @@ public class ClientThread extends Thread {
         this.handlersMap.put(Constants.ACTION_INIT_ADD_USER_MODAL, new InitAddUserModalHandler());
         this.handlersMap.put(Constants.ACTION_INIT_USER_WINDOW, new InitUserWindowHandler());
         this.handlersMap.put(Constants.ACTION_INIT_VIEW_USERS_WINDOW, new InitViewUsersWindowHandler());
+        this.handlersMap.put(Constants.ACTION_BLOCK_USER, new BlockUserHandler());
     }
 
     public BufferedWriter getWriter() {

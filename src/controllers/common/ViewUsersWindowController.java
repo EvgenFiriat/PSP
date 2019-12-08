@@ -8,9 +8,11 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
@@ -53,6 +55,10 @@ public class ViewUsersWindowController extends ServerConnector implements Initia
     @FXML
     public TableColumn<UserVM, String> positionColumn;
 
+
+    @FXML
+    public TableColumn<UserVM, Boolean> isBannedColumn;
+
     @FXML
     public TableColumn<UserVM, Long> idColumn;
 
@@ -66,7 +72,12 @@ public class ViewUsersWindowController extends ServerConnector implements Initia
 
     @Override
     protected String buildRequestString() {
-        return null;
+        JSONObject request = new JSONObject();
+        JSONObject data = new JSONObject();
+        request.put("action", Constants.ACTION_BLOCK_USER);
+        data.put("userID", usersTable.getSelectionModel().getSelectedItem().getId());
+        request.put("data", data);
+        return request.toJSONString() + "\n";
     }
 
     @Override
@@ -77,24 +88,64 @@ public class ViewUsersWindowController extends ServerConnector implements Initia
         emailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
         projectColumn.setCellValueFactory(new PropertyValueFactory<>("projectName"));
         positionColumn.setCellValueFactory(new PropertyValueFactory<>("position"));
+        isBannedColumn.setCellValueFactory(new PropertyValueFactory<>("isBanned"));
 
         if (!SessionStorage.isAdmin()) {
             blockUserButton.setDisable(true);
         }
 
+        try {
+            UsersCollection usersCollection = new UsersCollection();
+            JSONObject response = requestServer(buildInitRequestString());
+            if ((Boolean) response.get("success")) {
+                JSONArray users = (JSONArray) response.get("users");
+                usersCollection.fill(users);
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        usersTable.setItems(usersCollection.getUsersList());
+                    }
+                });
+            } else {
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        WindowDispatcher.showErrorMessage("Ошибка", (String) response.get("errorMessage"));
+                    }
+                });
+            }
+        } catch (IOException | ParseException e) {
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    WindowDispatcher.showErrorMessage("Ошибка", "Ошибка при запросе к серверу");
+                }
+            });
+        }
+    }
+
+    public void viewUserProfile(ActionEvent actionEvent) {
+        UserVM selectedUser = usersTable.getSelectionModel().getSelectedItem();
+        SessionStorage.setNewViewedProfileId(selectedUser.getId());
+        Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        window.close();
+    }
+
+    public void blockUser(ActionEvent actionEvent) {
+        if (usersTable.getSelectionModel().getSelectedItem().getBanned()) {
+            WindowDispatcher.showErrorMessage("Ошибка", "Пользоатель уже заблокирован");
+        }
+        this.blockUserButton.setDisable(true);
         new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
-                    UsersCollection usersCollection = new UsersCollection();
-                    JSONObject response = requestServer(buildInitRequestString());
+                    JSONObject response = requestServer(buildRequestString());
                     if ((Boolean) response.get("success")) {
-                        JSONArray users = (JSONArray) response.get("users");
-                        usersCollection.fill(users);
                         Platform.runLater(new Runnable() {
                             @Override
                             public void run() {
-                                usersTable.setItems(usersCollection.getUsersList());
+                                WindowDispatcher.showSuccessMessage("Успех", "Пользователь заблокирован");
                             }
                         });
                     } else {
@@ -109,17 +160,12 @@ public class ViewUsersWindowController extends ServerConnector implements Initia
                     Platform.runLater(new Runnable() {
                         @Override
                         public void run() {
-                            WindowDispatcher.showErrorMessage("Ошибка", "Ошибка при запросе к серверу");
+                            WindowDispatcher.showErrorMessage("Ошибка", "Ошибка соединения");
                         }
                     });
                 }
             }
         }).start();
-    }
-
-    public void viewUserProfile(ActionEvent actionEvent) {
-    }
-
-    public void blockUser(ActionEvent actionEvent) {
+        this.blockUserButton.setDisable(false);
     }
 }

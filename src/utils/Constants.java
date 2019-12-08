@@ -6,6 +6,7 @@ public class Constants {
     // Actions
     public static final String ACTION_LOGIN = "ActionLogin";
     public static final String ACTION_CREATE_USER = "ActionCreateUser";
+    public static final String ACTION_BLOCK_USER = "ActionBlockUser";
 
     // Init actions
     public static final String ACTION_INIT_ADD_USER_MODAL = "InitAddUserModal";
