@@ -62,7 +62,7 @@ public class AdminWindowController extends ServerConnector implements IValidator
                 try {
                     JSONObject obj = new JSONObject();
                     JSONObject data = new JSONObject();
-                    data.put("userId", SessionStorage.getCurrentUserId());
+                    data.put("userId", SessionStorage.getViewedProfileId());
                     obj.put("action", Constants.ACTION_INIT_USER_WINDOW);
                     obj.put("data", data);
                     String request = obj.toJSONString() + "\n";

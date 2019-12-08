@@ -39,7 +39,9 @@ public class LoginFormController extends ServerConnector implements IValidator {
                         responseObj = requestServer();
                         submitButton.setDisable(true);
                         if ((Boolean) responseObj.get("success")) {
-                            SessionStorage.setCurrentUserId((Long)responseObj.get("user_id"));
+                            Long userID = (Long)responseObj.get("user_id");
+                            SessionStorage.setCurrentUserId(userID);
+                            SessionStorage.setViewedProfileId(userID);
                             Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
                             if (responseObj.get("role").equals("admin")) {
                                 WindowDispatcher.switchScene(Constants.ADMIN_MAIN_WINDOW, window);

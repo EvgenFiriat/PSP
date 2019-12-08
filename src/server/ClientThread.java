@@ -18,17 +18,13 @@ import java.util.Map;
 public class ClientThread extends Thread {
     private BufferedWriter out;
     private BufferedReader in;
-    private Socket client;
-    private boolean isRunning;
-    private String JSONDataString;
     private Map<String, IActionHandler> handlersMap;
 
     ClientThread(Socket connectedClient) {
-        this.client = connectedClient;
         this.initHandlersMap();
         try {
-            in = new BufferedReader(new InputStreamReader(this.client.getInputStream()));
-            out = new BufferedWriter(new OutputStreamWriter(this.client.getOutputStream()));
+            in = new BufferedReader(new InputStreamReader(connectedClient.getInputStream()));
+            out = new BufferedWriter(new OutputStreamWriter(connectedClient.getOutputStream()));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -36,10 +32,10 @@ public class ClientThread extends Thread {
 
     @Override
     public void run() {
-        this.isRunning = true;
+        boolean isRunning = true;
         while (isRunning) {
             try {
-                JSONDataString = in.readLine();
+                String JSONDataString = in.readLine();
                 JSONObject request = (JSONObject) new JSONParser().parse(JSONDataString);
                 String JSONResult = handlersMap.get((String)request.get("action")).handle((JSONObject)request.get("data"));
                 out.write(JSONResult);
