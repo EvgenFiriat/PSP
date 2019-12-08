@@ -108,7 +108,7 @@
                   </Label>
                </children>
             </Pane>
-            <JFXButton fx:id="homeProfileButton" defaultButton="true" layoutX="19.0" layoutY="155.0" prefHeight="28.0" prefWidth="140.0" ripplerFill="#070707" text="Профиль" textFill="WHITE" underline="true">
+            <JFXButton fx:id="homeProfileButton" defaultButton="true" layoutX="19.0" layoutY="155.0" onAction="#homeViewEvent" prefHeight="28.0" prefWidth="140.0" ripplerFill="#070707" text="Профиль" textFill="WHITE" underline="true">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></JFXButton>

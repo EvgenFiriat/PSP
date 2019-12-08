@@ -66,7 +66,7 @@ public class AdminWindowController extends ServerConnector implements IValidator
         data.put("userId", SessionStorage.getViewedProfileId());
         obj.put("action", Constants.ACTION_INIT_USER_WINDOW);
         obj.put("data", data);
-        return (String) obj.toJSONString() + "\n";
+        return  obj.toJSONString() + "\n";
     }
 
     private void handleSuccessInit(JSONObject responseData) {
@@ -126,5 +126,10 @@ public class AdminWindowController extends ServerConnector implements IValidator
             SessionStorage.setNewViewedProfileId(null);
             this.displayUserData();
         }
+    }
+
+    public void homeViewEvent(ActionEvent actionEvent) {
+        SessionStorage.setViewedProfileId(SessionStorage.getCurrentUserId());
+        displayUserData();
     }
 }
