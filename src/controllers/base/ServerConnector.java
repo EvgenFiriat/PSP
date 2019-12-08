@@ -17,11 +17,4 @@ public abstract class ServerConnector {
         String responseString = ClientConnection.getIn().readLine();
         return  (JSONObject) new JSONParser().parse(responseString);
     }
-    protected JSONObject requestServer() throws IOException, ParseException {
-        ClientConnection.getConnection();
-        ClientConnection.getOut().write(this.buildRequestString());
-        ClientConnection.getOut().flush();
-        String responseString = ClientConnection.getIn().readLine();
-        return  (JSONObject) new JSONParser().parse(responseString);
-    }
 }

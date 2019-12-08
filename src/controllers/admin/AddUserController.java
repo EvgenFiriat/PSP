@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
+import controllers.base.IPersonalized;
 import controllers.base.IValidator;
 import controllers.base.ServerConnector;
 import javafx.application.Platform;
@@ -23,7 +24,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class AddUserController extends ServerConnector implements IValidator, Initializable {
+public class AddUserController extends ServerConnector implements IValidator, Initializable, IPersonalized {
     @FXML
     public JFXButton submitButton;
 
@@ -58,31 +59,46 @@ public class AddUserController extends ServerConnector implements IValidator, In
 
 
     public void submitUser(ActionEvent actionEvent) {
-        Platform.runLater(new Runnable() {
+        Stage currentWindow = (Stage) submitButton.getScene().getWindow();
+        new Thread(new Runnable() {
             @Override
             public void run() {
-                if (isValid()) {
-                    JSONObject responseObj = null;
-                    try {
-                        responseObj = requestServer();
-                        submitButton.setDisable(true);
-                        if ((Boolean) responseObj.get("success")) {
-                            Stage currentWindow = (Stage) submitButton.getScene().getWindow();
-                            WindowDispatcher.showSuccessMessage("Success", "User added");
-                            currentWindow.close();
-                        } else {
-                            WindowDispatcher.showErrorMessage("Ошибка", (String) responseObj.get("errorMessage"));
+                if (!isValid()) {
+                    Platform.runLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            WindowDispatcher.showErrorMessage("Неверные данные", "Проверьте, пожалуйста, валидность ваших данных");
                         }
-                    } catch (IOException | ParseException e) {
-                        WindowDispatcher.showErrorMessage("Ошибка соединения", "В подкючении отказано");
-                    } finally {
-                        submitButton.setDisable(false);
-                    }
-                } else {
-                    WindowDispatcher.showErrorMessage("Неверные данные", "Проверьте, пожалуйста, валидность ваших данных");
+                    });
+                    return;
+                }
+                JSONObject responseObj = null;
+                try {
+                    Platform.runLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            submitButton.setDisable(true);
+                        }
+                    });
+                    responseObj = requestServer(buildRequestString());
+                    handleUserSubmitAction(responseObj, currentWindow);
+                } catch (IOException | ParseException e) {
+                    Platform.runLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            WindowDispatcher.showErrorMessage("Ошибка соединения", "В подкючении отказано");
+                        }
+                    });
+                } finally {
+                    Platform.runLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            submitButton.setDisable(false);
+                        }
+                    });
                 }
             }
-        });
+        }).start();
     }
 
     @Override
@@ -92,6 +108,21 @@ public class AddUserController extends ServerConnector implements IValidator, In
 
     private boolean validateSalary() {
         return false;
+    }
+
+    private void handleUserSubmitAction(JSONObject responseObj, Stage currentWindow) {
+        if ((Boolean) responseObj.get("success")) {
+            WindowDispatcher.showSuccessMessage("Success", "User added");
+            currentWindow.close();
+        } else {
+            WindowDispatcher.showErrorMessage("Ошибка", (String) responseObj.get("errorMessage"));
+        }
+    }
+    @Override
+    public String buildInitRequestString() {
+        JSONObject initObject = new JSONObject();
+        initObject.put("action", Constants.ACTION_INIT_ADD_USER_MODAL);
+        return initObject.toJSONString() + "\n";
     }
 
     @Override
@@ -114,18 +145,31 @@ public class AddUserController extends ServerConnector implements IValidator, In
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        JSONObject initObject = new JSONObject();
-        initObject.put("action", Constants.ACTION_INIT_ADD_USER_MODAL);
-        try {
-            JSONObject initData = this.requestServer(initObject.toJSONString() + "\n");
-            JSONArray choices = (JSONArray) initData.get("menuChoices");
-            choices.forEach((Object item) -> positionInput.getItems().add(new MenuItem((String)item)));
-            positionInput.getItems().forEach((MenuItem item) -> item.setOnAction(actionEvent -> {
-                this.selectedPosition = item.getText().trim();
-                positionInput.setText(selectedPosition);
-            }));
-        } catch (IOException | ParseException e) {
-            WindowDispatcher.showErrorMessage("Error", "Не удалось загрузить данные с сервера");
-        }
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    JSONObject initData = requestServer(buildInitRequestString());
+                    JSONArray choices = (JSONArray) initData.get("menuChoices");
+                    Platform.runLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            choices.forEach((Object item) -> positionInput.getItems().add(new MenuItem((String)item)));
+                            positionInput.getItems().forEach((MenuItem item) -> item.setOnAction(actionEvent -> {
+                                selectedPosition = item.getText().trim();
+                                positionInput.setText(selectedPosition);
+                            }));
+                        }
+                    });
+                } catch (IOException | ParseException e) {
+                    Platform.runLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            WindowDispatcher.showErrorMessage("Error", "Не удалось загрузить данные с сервера");
+                        }
+                    });
+                }
+            }
+        }).start();
     }
 }

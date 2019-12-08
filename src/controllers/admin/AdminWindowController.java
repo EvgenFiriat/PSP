@@ -1,5 +1,6 @@
 package controllers.admin;
 
+import controllers.base.IPersonalized;
 import controllers.base.IValidator;
 import controllers.base.ServerConnector;
 import javafx.application.Platform;
@@ -19,7 +20,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class AdminWindowController extends ServerConnector implements IValidator, Initializable {
+public class AdminWindowController extends ServerConnector implements IValidator, Initializable, IPersonalized {
 
     @FXML
     public Label userNameLabel;
@@ -55,34 +56,57 @@ public class AdminWindowController extends ServerConnector implements IValidator
     }
 
     @Override
+    public String buildInitRequestString() {
+        JSONObject obj = new JSONObject();
+        JSONObject data = new JSONObject();
+        data.put("userId", SessionStorage.getViewedProfileId());
+        obj.put("action", Constants.ACTION_INIT_USER_WINDOW);
+        obj.put("data", data);
+        return (String) obj.toJSONString() + "\n";
+    }
+
+    private void handleSuccessInit(JSONObject responseData) {
+        userNameLabel.setText((String) responseData.get("fullName"));
+        emailLabel.setText((String) responseData.get("email"));
+        skypeLabel.setText((String) responseData.get("skype"));
+        positionLabel.setText((String) responseData.get("position"));
+        currentProjectLabel.setText((String) responseData.get("project"));
+        phoneNumberLabel.setText((String) responseData.get("phone"));
+    }
+
+    @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        Platform.runLater(new Runnable() {
+        new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
-                    JSONObject obj = new JSONObject();
-                    JSONObject data = new JSONObject();
-                    data.put("userId", SessionStorage.getViewedProfileId());
-                    obj.put("action", Constants.ACTION_INIT_USER_WINDOW);
-                    obj.put("data", data);
-                    String request = obj.toJSONString() + "\n";
-                    JSONObject response = requestServer(request);
-
+                    JSONObject response = requestServer(buildInitRequestString());
                     if ((Boolean)response.get("success")) {
                         JSONObject responseData = (JSONObject) response.get("data");
-                        userNameLabel.setText((String) responseData.get("fullName"));
-                        emailLabel.setText((String) responseData.get("email"));
-                        skypeLabel.setText((String) responseData.get("skype"));
-                        positionLabel.setText((String) responseData.get("position"));
-                        currentProjectLabel.setText((String) responseData.get("project"));
-                        phoneNumberLabel.setText((String) responseData.get("phone"));
+                        Platform.runLater(new Runnable() {
+                            @Override
+                            public void run() {
+                                handleSuccessInit(responseData);
+                            }
+                        });
                     } else {
-                        WindowDispatcher.showErrorMessage("Error", (String) response.get("errorMessage"));
+                        Platform.runLater(new Runnable() {
+                            @Override
+                            public void run() {
+                                WindowDispatcher.showErrorMessage("Error", (String) response.get("errorMessage"));
+                            }
+                        });
+
                     }
                 } catch (IOException | ParseException e) {
-                    WindowDispatcher.showErrorMessage("Error", "Ошибка при подключении");
+                    Platform.runLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            WindowDispatcher.showErrorMessage("Error", "Ошибка при подключении");
+                        }
+                    });
                 }
             }
-        });
+        }).start();
     }
 }

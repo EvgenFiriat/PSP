@@ -30,40 +30,45 @@ public class LoginFormController extends ServerConnector implements IValidator {
 
 
     public void handleSubmitEvent(ActionEvent actionEvent) {
-        Platform.runLater(new Runnable() {
+        Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        new Thread(new Runnable() {
             @Override
             public void run() {
-                if (isValid()) {
-                    JSONObject responseObj = null;
-                    try {
-                        responseObj = requestServer();
-                        submitButton.setDisable(true);
-                        if ((Boolean) responseObj.get("success")) {
-                            Long userID = (Long)responseObj.get("user_id");
-                            SessionStorage.setCurrentUserId(userID);
-                            SessionStorage.setViewedProfileId(userID);
-                            Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-                            if (responseObj.get("role").equals("admin")) {
-                                WindowDispatcher.switchScene(Constants.ADMIN_MAIN_WINDOW, window);
-                            }
-                            else {
-                                WindowDispatcher.switchScene(Constants.USER_MAIN_WINDOW, window);
-                            }
-                        } else {
-                            WindowDispatcher.showErrorMessage("Error", "Invalid credentials");
-                            emailInput.clear();
-                            passwordInput.clear();
+                if (!isValid()) {
+                    Platform.runLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            WindowDispatcher.showErrorMessage("Invalid data", "Fields should not be empty");
                         }
-                    } catch (IOException | ParseException e) {
-                        WindowDispatcher.showErrorMessage("Request error", "Connection refused");
-                    } finally {
-                        submitButton.setDisable(false);
+                    });
+                    return;
+                }
+                JSONObject responseObj = null;
+                try {
+                    submitButton.setDisable(true);
+                    responseObj = requestServer(buildRequestString());
+                    if ((Boolean) responseObj.get("success")) {
+                        handleSuccessInit(responseObj, window);
+                    } else {
+                        handleInvalidCredentialsError();
                     }
-                } else {
-                    WindowDispatcher.showErrorMessage("Invalid data", "Fields should not be empty");
+                } catch (IOException | ParseException e) {
+                    Platform.runLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            WindowDispatcher.showErrorMessage("Request error", "Connection refused");
+                        }
+                    });
+                } finally {
+                    Platform.runLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            submitButton.setDisable(false);
+                        }
+                    });
                 }
             }
-        });
+        }).start();
     }
 
     @Override
@@ -80,5 +85,38 @@ public class LoginFormController extends ServerConnector implements IValidator {
     @Override
     public boolean isValid() {
         return !emailInput.getText().equals("") && !passwordInput.getText().equals("");
+    }
+
+    private void personalizeUserWindow(String role, Stage window) {
+        if (role.equals("admin")) {
+            WindowDispatcher.switchScene(Constants.ADMIN_MAIN_WINDOW, window);
+        }
+        else {
+            WindowDispatcher.switchScene(Constants.USER_MAIN_WINDOW, window);
+        }
+    }
+
+    private void handleSuccessInit(JSONObject responseObj, Stage window) {
+        Long userID = (Long)responseObj.get("user_id");
+        String role = (String)responseObj.get("role");
+        SessionStorage.setCurrentUserId(userID);
+        SessionStorage.setViewedProfileId(userID);
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                personalizeUserWindow(role, window);
+            }
+        });
+    }
+
+    private void handleInvalidCredentialsError() {
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                WindowDispatcher.showErrorMessage("Error", "Invalid credentials");
+                emailInput.clear();
+                passwordInput.clear();
+            }
+        });
     }
 }
