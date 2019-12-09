@@ -30,6 +30,18 @@ public class UserDAO implements DBQueryHandler {
         }
     }
 
+    public Long getUserIdByName(String name) throws SQLException, ClassNotFoundException {
+        String firstName = name.split(" ")[0];
+        String lastName = name.split(" ")[1];
+        String sql = "SELECT id FROM user WHERE name = ? AND surname = ? AND is_admin = 1 LIMIT 1";
+        PreparedStatement query = MySqlConnection.getConnection().prepareStatement(sql);
+        query.setString(1, firstName);
+        query.setString(2, lastName);
+        ResultSet result = query.executeQuery();
+        result.next();
+        return result.getLong("id");
+    }
+
     public boolean isUserUnique(JSONObject data) {
         String sql = "SELECT * FROM user WHERE (name = ? AND surname = ?) OR email = ?";
         try {

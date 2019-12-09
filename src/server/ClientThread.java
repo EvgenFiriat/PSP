@@ -7,6 +7,7 @@ import server.base.IActionHandler;
 import server.handlers.AddUserHandler;
 import server.handlers.BlockUserHandler;
 import server.handlers.LoginHandler;
+import server.handlers.OOORequestHandler;
 import server.handlers.init.InitAddUserModalHandler;
 import server.handlers.init.InitOOORequestWindowHandler;
 import server.handlers.init.InitUserWindowHandler;
@@ -62,6 +63,7 @@ public class ClientThread extends Thread {
         this.handlersMap.put(Constants.ACTION_INIT_VIEW_USERS_WINDOW, new InitViewUsersWindowHandler());
         this.handlersMap.put(Constants.ACTION_BLOCK_USER, new BlockUserHandler());
         this.handlersMap.put(Constants.ACTION_INIT_OOO_REQUEST_WINDOW, new InitOOORequestWindowHandler());
+        this.handlersMap.put(Constants.ACTION_CREATE_OOO_REQUEST, new OOORequestHandler());
     }
 
     public BufferedWriter getWriter() {

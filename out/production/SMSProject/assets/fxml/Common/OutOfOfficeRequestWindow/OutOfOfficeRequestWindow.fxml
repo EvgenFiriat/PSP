@@ -25,7 +25,7 @@
             </Label>
          </children>
       </AnchorPane>
-      <JFXButton fx:id="submitButton" layoutX="225.0" layoutY="537.0" onAction="#submitUser" prefHeight="37.0" prefWidth="183.0" styleClass="sub-color" text="Отправить" textFill="WHITE">
+      <JFXButton fx:id="submitButton" layoutX="225.0" layoutY="537.0" onAction="#submitRequest" prefHeight="37.0" prefWidth="183.0" styleClass="sub-color" text="Отправить" textFill="WHITE">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>

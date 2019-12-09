@@ -4,24 +4,27 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextArea;
 import controllers.base.IPersonalized;
+import controllers.base.IValidator;
 import controllers.base.ServerConnector;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
+import javafx.stage.Stage;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 import utils.Constants;
 import utils.DateFormatter;
+import utils.SessionStorage;
 import utils.WindowDispatcher;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class OOORequestWindowController extends ServerConnector implements Initializable, IPersonalized {
+public class OOORequestWindowController extends ServerConnector implements IValidator, Initializable, IPersonalized {
     public JFXButton submitButton;
     public JFXTextArea commentInput;
     public JFXDatePicker startDatePicker;
@@ -31,10 +34,21 @@ public class OOORequestWindowController extends ServerConnector implements Initi
 
     private String selectedChoice = "";
     private String selectedApprover = "";
+    private String validationErrorMessage;
 
     @Override
     protected String buildRequestString() {
-        return null;
+        JSONObject request = new JSONObject();
+        JSONObject data = new JSONObject();
+        data.put("requestorID", SessionStorage.getCurrentUserId());
+        data.put("approver", selectedApprover);
+        data.put("requestType", selectedChoice);
+        data.put("startDate", startDatePicker.getValue().toString());
+        data.put("endDate", endDatePicker.getValue().toString());
+        data.put("comment", commentInput.getText());
+        request.put("data", data);
+        request.put("action", Constants.ACTION_CREATE_OOO_REQUEST);
+        return request.toJSONString() + "\n";
     }
 
     @Override
@@ -71,13 +85,52 @@ public class OOORequestWindowController extends ServerConnector implements Initi
         }
     }
 
-    public void submitUser(ActionEvent actionEvent) {
-    }
-
     @Override
     public String buildInitRequestString() {
         JSONObject request = new JSONObject();
         request.put("action", Constants.ACTION_INIT_OOO_REQUEST_WINDOW);
         return request.toJSONString() + "\n";
+    }
+
+    public void submitRequest(ActionEvent actionEvent) {
+        if (this.isValid()) {
+            Stage currentWindow = (Stage) submitButton.getScene().getWindow();
+
+            try {
+                JSONObject response = this.requestServer(this.buildRequestString());
+
+                if ((Boolean) response.get("success")) {
+                    WindowDispatcher.showSuccessMessage("Уведомление", "Запрос отправлен");
+                    currentWindow.close();
+                } else {
+                    WindowDispatcher.showErrorMessage("Ошибка", (String) response.get("errorMessage"));
+                }
+            } catch (IOException | ParseException e) {
+                WindowDispatcher.showErrorMessage("Ошибка", "Не удалось подключиться к серверу");
+            }
+        } else {
+            WindowDispatcher.showErrorMessage("Ошибка", this.validationErrorMessage);
+        }
+
+
+    }
+
+    @Override
+    public boolean isValid() {
+        this.validationErrorMessage = "";
+
+        if (this.startDatePicker.getValue() != null && this.endDatePicker != null) {
+            if (this.startDatePicker.getValue().compareTo(this.endDatePicker.getValue()) > 0) {
+                this.validationErrorMessage += "- Дата окончания должна быть позже даты начала \n";
+            }
+        }
+        if (selectedApprover.equals("")) {
+            this.validationErrorMessage += "- Выберите подтверждающее лицо \n";
+        }
+        if (selectedChoice.equals("")) {
+            this.validationErrorMessage += "- Выберите тип отсутствия \n";
+        }
+
+        return this.validationErrorMessage.equals("");
     }
 }
