@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="601.0" prefWidth="600.0" styleClass="main-color-light" stylesheets="@../../../css/colors.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.common.OOORequestWindowController">
+   <children>
+      <AnchorPane layoutY="-1.0" prefHeight="87.0" prefWidth="600.0" styleClass="main-color">
+         <children>
+            <Label layoutX="165.0" layoutY="25.0" text="Запрос на отсутствие" textFill="#fffefe">
+               <font>
+                  <Font name="Noto Sans Arabic UI Bold" size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="513.0" layoutY="38.0" prefWidth="52.0" text="SMS App" textFill="WHITE">
+               <font>
+                  <Font name="Noto Sans Tamil Bold" size="12.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <JFXButton fx:id="submitButton" layoutX="225.0" layoutY="537.0" onAction="#submitUser" prefHeight="37.0" prefWidth="183.0" styleClass="sub-color" text="Отправить" textFill="WHITE">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <Label layoutX="60.0" layoutY="183.0" text="Тип запроса" />
+      <MenuButton fx:id="requestTypePicker" layoutX="203.0" layoutY="178.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="113.0" />
+      <Label layoutX="60.0" layoutY="218.0" text="Подтверждающий" />
+      <MenuButton fx:id="approverPicker" layoutX="203.0" layoutY="213.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="113.0" />
+      <Label layoutX="60.0" layoutY="283.0" text="Комментарий:">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font></Label>
+      <JFXTextArea fx:id="commentInput" layoutX="60.0" layoutY="310.0" />
+      <JFXDatePicker fx:id="startDatePicker" layoutX="378.0" layoutY="209.0" promptText="yyyy-mm-dd" />
+      <JFXDatePicker fx:id="endDatePicker" layoutX="378.0" layoutY="278.0" promptText="yyyy-mm-dd" />
+      <Label layoutX="378.0" layoutY="180.0" text="Дата начала" />
+      <Label layoutX="376.0" layoutY="249.0" text="Дата окончания" />
+   </children>
+</AnchorPane>

@@ -112,6 +112,7 @@ public class LoginFormController extends ServerConnector implements IValidator {
         String role = (String)responseObj.get("role");
         SessionStorage.setCurrentUserId(userID);
         SessionStorage.setViewedProfileId(userID);
+        SessionStorage.setNewViewedProfileId(userID);
         Platform.runLater(new Runnable() {
             @Override
             public void run() {

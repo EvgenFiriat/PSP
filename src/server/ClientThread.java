@@ -8,6 +8,7 @@ import server.handlers.AddUserHandler;
 import server.handlers.BlockUserHandler;
 import server.handlers.LoginHandler;
 import server.handlers.init.InitAddUserModalHandler;
+import server.handlers.init.InitOOORequestWindowHandler;
 import server.handlers.init.InitUserWindowHandler;
 import server.handlers.init.InitViewUsersWindowHandler;
 import utils.Constants;
@@ -60,6 +61,7 @@ public class ClientThread extends Thread {
         this.handlersMap.put(Constants.ACTION_INIT_USER_WINDOW, new InitUserWindowHandler());
         this.handlersMap.put(Constants.ACTION_INIT_VIEW_USERS_WINDOW, new InitViewUsersWindowHandler());
         this.handlersMap.put(Constants.ACTION_BLOCK_USER, new BlockUserHandler());
+        this.handlersMap.put(Constants.ACTION_INIT_OOO_REQUEST_WINDOW, new InitOOORequestWindowHandler());
     }
 
     public BufferedWriter getWriter() {

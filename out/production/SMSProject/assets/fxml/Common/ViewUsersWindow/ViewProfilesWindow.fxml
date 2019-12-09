@@ -23,7 +23,7 @@
                   <Font name="Noto Sans Tamil Bold" size="12.0" />
                </font>
             </Label>
-            <JFXTextField fx:id="searchProfileInput" layoutX="712.0" layoutY="34.0" promptText="Поиск сотрудников">
+            <JFXTextField fx:id="searchProfileInput" layoutX="712.0" layoutY="34.0" promptText="Поиск сотрудников" visible="false">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>

@@ -25,9 +25,18 @@ public class AdminWindowController extends ServerConnector implements IValidator
 
     @FXML
     public Label userNameLabel;
-    public JFXButton homeProfileButton;
+
+    @FXML
     public JFXButton showStaffButton;
+
+    @FXML
     public JFXButton addUserButton;
+
+    @FXML
+    public JFXButton oooButton;
+
+    @FXML
+    public JFXButton homeProfileWindow;
 
     @FXML
     private Label emailLabel;
@@ -131,5 +140,10 @@ public class AdminWindowController extends ServerConnector implements IValidator
     public void homeViewEvent(ActionEvent actionEvent) {
         SessionStorage.setViewedProfileId(SessionStorage.getCurrentUserId());
         displayUserData();
+    }
+
+    public void viewOutOfOfficeModal(ActionEvent actionEvent) {
+        Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        WindowDispatcher.popupModalWindow(Constants.OOO_REQUEST_WINDOW, window);
     }
 }

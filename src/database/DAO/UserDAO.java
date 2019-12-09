@@ -11,6 +11,13 @@ import java.sql.SQLException;
 
 public class UserDAO implements DBQueryHandler {
 
+    public ResultSet listAdmins() throws SQLException, ClassNotFoundException {
+        String sql = "SELECT name, surname FROM user WHERE is_admin = 1";
+        PreparedStatement query = MySqlConnection.getConnection().prepareStatement(sql);
+        return query.executeQuery();
+
+    }
+
     @Override
     public ResultSet list() {
         String sql = "SELECT * FROM user";
