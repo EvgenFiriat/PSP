@@ -80,6 +80,19 @@ public class UserDAO implements DBQueryHandler {
         return query.executeQuery();
     }
 
+    public void updateUser(JSONObject data) throws SQLException, ClassNotFoundException {
+        String sql = "UPDATE user SET name = ?, surname = ?, email = ?, phone_number = ?, password = ?, skype = ? WHERE id = ?";
+        PreparedStatement query = MySqlConnection.getConnection().prepareStatement(sql);
+        query.setString(1, (String) data.get("name"));
+        query.setString(2, (String) data.get("surname"));
+        query.setString(3, (String) data.get("email"));
+        query.setString(4, (String) data.get("phone"));
+        query.setString(5, (String) data.get("password"));
+        query.setString(6, (String) data.get("skype"));
+        query.setLong(7, (Long) data.get("userID"));
+        query.executeUpdate();
+    }
+
     public void blockUser(JSONObject data) throws SQLException, ClassNotFoundException {
         String sql = "UPDATE user SET is_banned=TRUE WHERE user.id = ?";
         PreparedStatement query = MySqlConnection.getConnection().prepareStatement(sql);
@@ -96,8 +109,11 @@ public class UserDAO implements DBQueryHandler {
     }
 
     @Override
-    public ResultSet get(JSONObject data) {
-        return null;
+    public ResultSet get(JSONObject data) throws SQLException, ClassNotFoundException {
+        String sql = "SELECT * from user WHERE id = ?";
+        PreparedStatement query = MySqlConnection.getConnection().prepareStatement(sql);
+        query.setLong(1, (Long) data.get("userID"));
+        return query.executeQuery();
     }
 
     @Override

@@ -53,6 +53,9 @@ public abstract class BaseUserWindowController extends ServerConnector implement
     @FXML
     private Label phoneNumberLabel;
 
+    @FXML
+    public JFXButton editBtn;
+
     public void homeViewEvent(ActionEvent actionEvent) {
         SessionStorage.setViewedProfileId(SessionStorage.getCurrentUserId());
         displayUserData();
@@ -108,6 +111,11 @@ public abstract class BaseUserWindowController extends ServerConnector implement
     }
 
     private void displayUserData() {
+        if (!SessionStorage.getViewedProfileId().equals(SessionStorage.getCurrentUserId()) && !SessionStorage.isAdmin()) {
+            editBtn.setVisible(false);
+        } else {
+            editBtn.setVisible(true);
+        }
         new Thread(new Runnable() {
             @Override
             public void run() {
