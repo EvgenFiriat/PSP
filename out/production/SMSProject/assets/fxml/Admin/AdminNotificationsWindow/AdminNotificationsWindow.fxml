@@ -13,7 +13,7 @@
    <children>
       <AnchorPane layoutY="-2.0" prefHeight="88.0" prefWidth="950.0" styleClass="main-color">
          <children>
-            <Label layoutX="398.0" layoutY="30.0" prefHeight="28.0" prefWidth="154.0" text="Сотрудники" textFill="#fffefe">
+            <Label layoutX="398.0" layoutY="30.0" prefHeight="28.0" prefWidth="154.0" text="Уведомления" textFill="#fffefe">
                <font>
                   <Font name="Noto Sans Arabic UI Bold" size="24.0" />
                </font>
