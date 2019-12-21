@@ -66,7 +66,7 @@
                         <Insets left="10.0" />
                      </padding>
                   </Label>
-                  <JFXButton fx:id="editBtn" onAction="#showAdminEditModal" layoutX="455.0" layoutY="449.0" ripplerFill="#cdc0c0" text="Править" underline="true">
+                  <JFXButton fx:id="editBtn" layoutX="455.0" layoutY="449.0" onAction="#showAdminEditModal" ripplerFill="#cdc0c0" text="Править" underline="true">
                      <font>
                         <Font name="System Italic" size="10.0" />
                      </font>
@@ -74,11 +74,6 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </JFXButton>
-                  <Label layoutX="123.0" layoutY="269.0" text="Текущий проект:">
-                     <font>
-                        <Font name="Noto Sans Arabic UI Regular" size="16.0" />
-                     </font>
-                  </Label>
                   <Label fx:id="currentProjectLabel" layoutX="306.0" layoutY="269.0" prefHeight="26.0" prefWidth="140.0" textAlignment="JUSTIFY">
                      <font>
                         <Font name="Noto Sans Arabic UI Regular" size="16.0" />
@@ -118,20 +113,16 @@
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></JFXButton>
-            <JFXButton layoutX="19.0" layoutY="197.0" prefHeight="28.0" prefWidth="140.0" ripplerFill="#070707" text="Проекты" textFill="WHITE">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor></JFXButton>
             <JFXButton fx:id="oooButton" layoutX="19.0" layoutY="272.0" onAction="#viewOutOfOfficeModal" prefHeight="28.0" prefWidth="140.0" ripplerFill="#070707" text="Вне офиса" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></JFXButton>
-            <JFXButton fx:id="showNotificationsButton" onAction="#showNotificationsWindow" layoutX="19.0" layoutY="308.0" prefHeight="28.0" prefWidth="140.0" ripplerFill="#070707" text="Уведомления (1)" textFill="WHITE">
+            <JFXButton fx:id="showNotificationsButton" layoutX="19.0" layoutY="308.0" onAction="#showNotificationsWindow" prefHeight="28.0" prefWidth="140.0" ripplerFill="#070707" text="Уведомления" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </JFXButton>
-            <JFXButton layoutX="19.0" layoutY="409.0" prefHeight="28.0" prefWidth="140.0" ripplerFill="#070707" text="Статистика" textFill="WHITE">
+            <JFXButton layoutX="19.0" layoutY="409.0" onAction="#showStats" prefHeight="28.0" prefWidth="140.0" ripplerFill="#070707" text="Статистика" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>

@@ -1,6 +1,6 @@
 package server.handlers.init;
 
-import database.DAO.UserRoleDAO;
+import database.DAO.UserLevelDAO;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import server.base.IActionHandler;
@@ -14,10 +14,10 @@ public class InitAddUserModalHandler implements IActionHandler {
         JSONObject response = new JSONObject();
         JSONArray menuChoices = new JSONArray();
         try {
-            UserRoleDAO dao = new UserRoleDAO();
+            UserLevelDAO dao = new UserLevelDAO();
             ResultSet choices = dao.list();
             while (choices.next()) {
-                menuChoices.add(choices.getString("role_name"));
+                menuChoices.add(choices.getString("level_name"));
             }
             response.put("success", true);
             response.put("menuChoices", menuChoices);

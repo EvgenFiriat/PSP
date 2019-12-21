@@ -9,7 +9,7 @@ public class UserVM {
     private String surname;
     private String email;
     private String position;
-    private String projectName;
+    private String level;
     private Boolean isBanned;
 
     public UserVM(JSONObject dataObj) {
@@ -18,7 +18,7 @@ public class UserVM {
         this.surname = (String) dataObj.get("surname");
         this.email = (String) dataObj.get("email");
         this.position = (String) dataObj.get("position");
-        this.projectName = (String) dataObj.get("projectName");
+        this.level = (String) dataObj.get("level");
         this.isBanned = (Boolean) dataObj.get("isBanned");
     }
 
@@ -54,12 +54,12 @@ public class UserVM {
         this.position = position;
     }
 
-    public String getProjectName() {
-        return projectName;
+    public String getLevel() {
+        return level;
     }
 
-    public void setProjectName(String projectName) {
-        this.projectName = projectName;
+    public void setLevel(String level) {
+        this.level = level;
     }
 
     public void setId(Long id) {

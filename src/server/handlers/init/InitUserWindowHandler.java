@@ -1,5 +1,6 @@
 package server.handlers.init;
 
+import database.DAO.ClassDAO;
 import database.DAO.UserDAO;
 import org.json.simple.JSONObject;
 import server.base.IActionHandler;
@@ -18,9 +19,9 @@ public class InitUserWindowHandler implements IActionHandler {
                 responseData.put("email", result.getString("email"));
                 responseData.put("skype", result.getString("skype"));
                 responseData.put("fullName", result.getString("name") + " " + result.getString("surname"));
-                responseData.put("position", result.getString("position"));
+                responseData.put("level", "Учитель " + result.getString("level"));
                 responseData.put("phone", result.getString("phone"));
-                responseData.put("project", result.getString("project"));
+                responseData.put("classData", new ClassDAO().getScheduledClass((Long) data.get("userId")));
                 response.put("data", responseData);
                 response.put("success", true);
             }

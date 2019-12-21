@@ -22,4 +22,9 @@ public class UserWindowController extends BaseUserWindowController {
         Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         WindowDispatcher.popupModalWindow(Constants.USER_EDIT_ACCOUNT_WINDOW, window);
     }
+
+    public void showScheduleModal(ActionEvent actionEvent) {
+        Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        WindowDispatcher.popupModalWindow(Constants.USER_SCHEDULE_WINDOW, window);
+    }
 }

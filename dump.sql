@@ -16,6 +16,36 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `class`
+--
+
+DROP TABLE IF EXISTS `class`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `class` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `teacher_id` int(11) NOT NULL,
+  `class_number` int(11) NOT NULL,
+  `weekday` int(11) unsigned NOT NULL,
+  `start_time` time NOT NULL,
+  `end_time` time NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `TeacherID` (`teacher_id`),
+  CONSTRAINT `TeacherID` FOREIGN KEY (`teacher_id`) REFERENCES `user` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `class`
+--
+
+LOCK TABLES `class` WRITE;
+/*!40000 ALTER TABLE `class` DISABLE KEYS */;
+INSERT INTO `class` VALUES (2,3,409,1,'08:00:00','09:45:00'),(3,3,409,6,'08:00:00','09:45:00'),(4,3,409,6,'05:00:00','09:45:00'),(5,4,409,6,'05:00:00','09:45:00'),(6,4,401,7,'08:00:00','09:45:00'),(7,4,401,1,'08:00:00','09:45:00'),(8,4,403,1,'09:45:00','11:20:00');
+/*!40000 ALTER TABLE `class` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `ooo_request`
 --
 
@@ -38,7 +68,7 @@ CREATE TABLE `ooo_request` (
   CONSTRAINT `ApproverID` FOREIGN KEY (`approver_id`) REFERENCES `user` (`id`) ON DELETE CASCADE,
   CONSTRAINT `RequestTypeID` FOREIGN KEY (`request_type_id`) REFERENCES `request_type` (`id`) ON DELETE CASCADE,
   CONSTRAINT `UserID` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -47,34 +77,8 @@ CREATE TABLE `ooo_request` (
 
 LOCK TABLES `ooo_request` WRITE;
 /*!40000 ALTER TABLE `ooo_request` DISABLE KEYS */;
-INSERT INTO `ooo_request` VALUES (1,3,5,1,'Улетаю в Японию.',NULL,'2019-12-05','2019-12-20'),(2,3,5,1,'Уехал в космос на солярис.',NULL,'2019-12-06','2019-12-28'),(3,3,5,2,'...',NULL,'2019-12-13','2019-12-27');
+INSERT INTO `ooo_request` VALUES (1,3,5,1,'Улетаю в Японию.',NULL,'2019-12-05','2019-12-20'),(2,3,5,1,'Уехал в космос на солярис.',NULL,'2019-12-06','2019-12-28'),(3,3,5,2,'...',NULL,'2019-12-13','2019-12-27'),(4,3,5,2,'aaa',NULL,'2020-05-04','2020-05-15');
 /*!40000 ALTER TABLE `ooo_request` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `project`
---
-
-DROP TABLE IF EXISTS `project`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `project` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `company_owner_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `project`
---
-
-LOCK TABLES `project` WRITE;
-/*!40000 ALTER TABLE `project` DISABLE KEYS */;
-INSERT INTO `project` VALUES (1,'Smile Direct Club','Softensity','SDC');
-/*!40000 ALTER TABLE `project` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -116,17 +120,13 @@ CREATE TABLE `user` (
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `phone_number` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `skype` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `salary` double NOT NULL,
   `is_admin` tinyint(1) DEFAULT 0,
   `is_banned` tinyint(1) DEFAULT 0,
-  `position_id` int(11) NOT NULL,
-  `project_id` int(11) NOT NULL,
+  `level_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `positionID` (`position_id`),
-  KEY `projectID` (`project_id`),
-  CONSTRAINT `positionID` FOREIGN KEY (`position_id`) REFERENCES `user_position` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `projectID` FOREIGN KEY (`project_id`) REFERENCES `project` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  KEY `levelID` (`level_id`),
+  CONSTRAINT `levelID` FOREIGN KEY (`level_id`) REFERENCES `user_level` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -135,32 +135,32 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (3,'Admin','Admin','Admin','Admin@gmail.com','+375291896089','woodooloo3',1000,1,0,1,1),(4,'Евгений','Шиманович','user','user@gmail.com','+375291896089','www',800,0,0,1,1),(5,'Александр','Гербик','user','gerbik@gmail.com','+375291896089','woo',2000,1,0,1,1),(10,'Тест','Тест','тест','тест','тест','тест',500,1,1,1,1);
+INSERT INTO `user` VALUES (3,'Admin','Admin','123','Admin@gmail.com','+375291896089','woodooloo3',1,0,1),(4,'Пупкин','Иванович','user','user@gmail.com','+375291896089','www',0,0,1),(5,'Александр','Гербик','user','gerbik@gmail.com','+375291896089','woo',1,0,1),(10,'Тест','Тест','тест','тест','тест','тест',1,1,1),(11,'ttt','ttt','ttt','ttt','ttt','ttt',1,0,4);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `user_position`
+-- Table structure for table `user_level`
 --
 
-DROP TABLE IF EXISTS `user_position`;
+DROP TABLE IF EXISTS `user_level`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `user_position` (
+CREATE TABLE `user_level` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `role_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `level_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `user_position`
+-- Dumping data for table `user_level`
 --
 
-LOCK TABLES `user_position` WRITE;
-/*!40000 ALTER TABLE `user_position` DISABLE KEYS */;
-INSERT INTO `user_position` VALUES (1,'Груп-менеджер');
-/*!40000 ALTER TABLE `user_position` ENABLE KEYS */;
+LOCK TABLES `user_level` WRITE;
+/*!40000 ALTER TABLE `user_level` DISABLE KEYS */;
+INSERT INTO `user_level` VALUES (1,'Beginner'),(2,'Intermediate'),(3,'Advancedsss'),(4,'Admin');
+/*!40000 ALTER TABLE `user_level` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -172,4 +172,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-12-20 21:44:05
+-- Dump completed on 2020-05-03  6:23:45

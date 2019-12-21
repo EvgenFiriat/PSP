@@ -46,8 +46,8 @@
           <TableColumn fx:id="columnName" editable="false" prefWidth="121.0" resizable="false" text="Имя" />
           <TableColumn fx:id="surnameColumn" editable="false" prefWidth="194.0" resizable="false" text="Фамилия" />
             <TableColumn fx:id="emailColumn" editable="false" prefWidth="212.0" resizable="false" text="Почта" />
-            <TableColumn fx:id="positionColumn" editable="false" prefWidth="150.0" resizable="false" text="Должность" />
-            <TableColumn fx:id="projectColumn" editable="false" prefWidth="236.0" resizable="false" text="Проект" />
+            <TableColumn fx:id="positionColumn" editable="false" prefWidth="150.0" resizable="false" text="Пара" />
+            <TableColumn fx:id="levelColumn" editable="false" prefWidth="236.0" resizable="false" text="Уровень" />
             <TableColumn fx:id="isBannedColumn" editable="false" prefWidth="75.0" text="isBanned" visible="false" />
         </columns>
          <columnResizePolicy>

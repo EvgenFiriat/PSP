@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="423.0" prefWidth="597.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="423.0" prefWidth="597.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.admin.PIEChartController">
    <children>
       <AnchorPane layoutY="-1.0" prefHeight="87.0" prefWidth="597.0" style="-fx-background-color: #1D2026;">
          <children>
@@ -26,6 +26,6 @@
             </Label>
          </children>
       </AnchorPane>
-      <PieChart layoutX="85.0" layoutY="93.0" prefHeight="301.0" prefWidth="428.0" />
+      <PieChart fx:id="chart" layoutX="85.0" layoutY="93.0" prefHeight="301.0" prefWidth="428.0" />
    </children>
 </AnchorPane>

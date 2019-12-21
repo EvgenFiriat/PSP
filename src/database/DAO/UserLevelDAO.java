@@ -8,11 +8,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class UserRoleDAO implements DBQueryHandler {
+public class UserLevelDAO implements DBQueryHandler {
 
     @Override
     public ResultSet list() {
-        String sql = "SELECT * FROM user_position";
+        String sql = "SELECT * FROM user_level";
         try {
             PreparedStatement query = MySqlConnection.getConnection().prepareStatement(sql);
             return query.executeQuery();
@@ -26,6 +26,23 @@ public class UserRoleDAO implements DBQueryHandler {
     public ResultSet get(JSONObject data) {
         return null;
     }
+
+    public Long getLevelId(String levelName) {
+        String sql = "SELECT id FROM user_level WHERE level_name = ?";
+        try {
+            PreparedStatement query = MySqlConnection.getConnection().prepareStatement(sql);
+            query.setString(1, levelName);
+            ResultSet result = query.executeQuery();
+            if (result.next()) {
+                return result.getLong("id");
+            }
+            return null;
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
 
     @Override
     public void add(JSONObject data) {

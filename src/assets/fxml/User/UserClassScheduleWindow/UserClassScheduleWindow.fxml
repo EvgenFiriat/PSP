@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="641.0" prefWidth="475.0" styleClass="main-color-light" stylesheets="@../../../css/colors.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.user.UserScheduleWindowController">
+   <children>
+      <AnchorPane layoutY="-2.0" prefHeight="88.0" prefWidth="475.0" styleClass="main-color">
+         <children>
+            <Label layoutX="113.0" layoutY="30.0" prefHeight="37.0" prefWidth="299.0" text="Расписание на сегодня" textFill="#fffefe">
+               <font>
+                  <Font name="Noto Sans Arabic UI Bold" size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="412.0" layoutY="38.0" prefWidth="52.0" text="SMS App" textFill="WHITE">
+               <font>
+                  <Font name="Noto Sans Tamil Bold" size="12.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <TableView fx:id="classesTable" layoutX="37.0" layoutY="86.0" prefHeight="515.0" prefWidth="401.0">
+        <columns>
+            <TableColumn fx:id="timeColumn" editable="false" prefWidth="198.0" resizable="false" text="Время" />
+            <TableColumn fx:id="classNumberColumn" editable="false" prefWidth="188.0" resizable="false" text="Аудитория" />
+        </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+   </children>
+</AnchorPane>

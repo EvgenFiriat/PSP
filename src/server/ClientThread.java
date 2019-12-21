@@ -63,6 +63,8 @@ public class ClientThread extends Thread {
         this.handlersMap.put(Constants.ACTION_INIT_USER_NOTIFICATIONS_WINDOW, new InitUserNotificationsWindowHandler());
         this.handlersMap.put(Constants.ACTION_INIT_EDIT_USER_WINDOW, new InitEditUserModalHandler());
         this.handlersMap.put(Constants.ACTION_EDIT_USER, new EditAccountHandler());
+        this.handlersMap.put(Constants.ACTION_INIT_PIE_CHART, new InitPieChartHandler());
+        this.handlersMap.put(Constants.ACTION_INIT_SCHEDULE_WINDOW, new InitUserScheduleWindowHandler());
     }
 
     public BufferedWriter getWriter() {

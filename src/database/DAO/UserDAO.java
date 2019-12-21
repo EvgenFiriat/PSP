@@ -18,6 +18,13 @@ public class UserDAO implements DBQueryHandler {
 
     }
 
+    public ResultSet getStats() throws SQLException, ClassNotFoundException {
+        String sql = "SELECT user_level.level_name, count(user.id) from user " +
+                "JOIN user_level ON user_level.id = user.level_id group by user_level.level_name";
+        PreparedStatement query = MySqlConnection.getConnection().prepareStatement(sql);
+        return query.executeQuery();
+    }
+
     @Override
     public ResultSet list() {
         String sql = "SELECT * FROM user";
@@ -71,9 +78,8 @@ public class UserDAO implements DBQueryHandler {
     }
 
     public ResultSet getUserWindowContext(Long id) throws SQLException, ClassNotFoundException {
-        String sql = "SELECT user.name as name, surname, email, skype, role_name as position, phone_number as phone, project.name as project FROM user " +
-                "JOIN user_position on user.position_id = user_position.id " +
-                "JOIN project on user.project_id = project.id " +
+        String sql = "SELECT user.name as name, surname, email, skype, level_name as level, phone_number as phone FROM user " +
+                "JOIN user_level on user.level_id = user_level.id " +
                 "WHERE user.id = ?";
         PreparedStatement query = MySqlConnection.getConnection().prepareStatement(sql);
         query.setLong(1, id);
@@ -101,9 +107,8 @@ public class UserDAO implements DBQueryHandler {
     }
 
     public ResultSet getUsers() throws SQLException, ClassNotFoundException {
-        String sql = "SELECT user.id, user.name as name, surname, email, role_name as position, project.name as project, is_banned FROM user " +
-                "JOIN user_position on user.position_id = user_position.id " +
-                "JOIN project on user.project_id = project.id";
+        String sql = "SELECT user.id, user.name as name, level_name as level, surname, email, is_banned FROM user " +
+                "JOIN user_level on user.level_id = user_level.id";
         PreparedStatement query = MySqlConnection.getConnection().prepareStatement(sql);
         return query.executeQuery();
     }
@@ -118,7 +123,6 @@ public class UserDAO implements DBQueryHandler {
 
     @Override
     public void add(JSONObject data) throws SQLException, ClassNotFoundException {
-        ResultSet project = new ProjectDAO().get(data);
         String sql = "INSERT user(" +
                 "name, " +
                 "surname, " +
@@ -126,11 +130,8 @@ public class UserDAO implements DBQueryHandler {
                 "password, " +
                 "skype, " +
                 "phone_number, " +
-                "salary, " +
                 "is_admin, " +
-                "position_id, " +
-                "project_id) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        project.next();
+                "level_id ) VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
         PreparedStatement query = MySqlConnection.getConnection().prepareStatement(sql);
         query.setString(1, (String) data.get("name"));
         query.setString(2, (String) data.get("surname"));
@@ -138,10 +139,8 @@ public class UserDAO implements DBQueryHandler {
         query.setString(4, (String) data.get("password"));
         query.setString(5, (String) data.get("skype"));
         query.setString(6, (String) data.get("phone"));
-        query.setDouble(7, (Double) data.get("salary"));
-        query.setBoolean(8, (Boolean) data.get("isAdmin"));
-        query.setInt(9, 1);
-        query.setInt(10, project.getInt("id"));
+        query.setBoolean(7, (Boolean) data.get("isAdmin"));
+        query.setLong(8, new UserLevelDAO().getLevelId((String) data.get("position")));
         query.executeUpdate();
     }
 

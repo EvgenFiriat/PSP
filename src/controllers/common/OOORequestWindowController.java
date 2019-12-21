@@ -22,6 +22,7 @@ import utils.WindowDispatcher;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class OOORequestWindowController extends ServerConnector implements IValidator, Initializable, IPersonalized {
@@ -122,6 +123,9 @@ public class OOORequestWindowController extends ServerConnector implements IVali
         if (this.startDatePicker.getValue() != null && this.endDatePicker != null) {
             if (this.startDatePicker.getValue().compareTo(this.endDatePicker.getValue()) > 0) {
                 this.validationErrorMessage += "- Дата окончания должна быть позже даты начала \n";
+            }
+            if (this.startDatePicker.getValue().compareTo(LocalDate.now()) < 0) {
+                this.validationErrorMessage += "- Дата начала действия запроса должна быть не раньше чем сегодняшний день \n";
             }
         }
         if (selectedApprover.equals("")) {

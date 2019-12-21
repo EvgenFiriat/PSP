@@ -47,9 +47,6 @@ public class AddUserController extends ServerConnector implements IValidator, In
     public JFXTextField phoneInput;
 
     @FXML
-    public JFXTextField salaryInput;
-
-    @FXML
     public JFXCheckBox isAdminInput;
 
     @FXML
@@ -81,7 +78,13 @@ public class AddUserController extends ServerConnector implements IValidator, In
                         }
                     });
                     responseObj = requestServer(buildRequestString());
-                    handleUserSubmitAction(responseObj, currentWindow);
+                    JSONObject finalResponseObj = responseObj;
+                    Platform.runLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            handleUserSubmitAction(finalResponseObj, currentWindow);
+                        }
+                    });
                 } catch (IOException | ParseException e) {
                     Platform.runLater(new Runnable() {
                         @Override
@@ -103,11 +106,14 @@ public class AddUserController extends ServerConnector implements IValidator, In
 
     @Override
     public boolean isValid() {
-        return true;
-    }
-
-    private boolean validateSalary() {
-        return false;
+        return !(
+            nameInput.getText().equals("")
+            || surnameInput.getText().equals("")
+            || emailInput.getText().equals("")
+            || skypeInput.getText().equals("")
+            || passwordInput.getText().equals("")
+            || phoneInput.getText().equals("")
+        );
     }
 
     private void handleUserSubmitAction(JSONObject responseObj, Stage currentWindow) {
@@ -135,7 +141,6 @@ public class AddUserController extends ServerConnector implements IValidator, In
         data.put("email", emailInput.getText().trim());
         data.put("skype", skypeInput.getText().trim());
         data.put("phone", phoneInput.getText().trim());
-        data.put("salary", Double.parseDouble(salaryInput.getText().trim()));
         data.put("isAdmin", isAdminInput.isSelected());
         data.put("position", selectedPosition);
         obj.put("action", Constants.ACTION_CREATE_USER);

@@ -37,8 +37,7 @@
       <Label layoutX="109.0" layoutY="268.0" prefHeight="18.0" text="E-mail" />
       <Label layoutX="109.0" layoutY="301.0" prefHeight="18.0" text="Skype" />
       <Label layoutX="109.0" layoutY="335.0" prefHeight="18.0" text="Телефонный номер" />
-      <Label layoutX="109.0" layoutY="369.0" prefHeight="18.0" text="Заработная плата" />
-      <Label layoutX="109.0" layoutY="403.0" prefHeight="18.0" text="Позиция" />
+      <Label layoutX="108.0" layoutY="371.0" prefHeight="18.0" text="Уровень преподавания" />
       <JFXButton fx:id="submitButton" layoutX="209.0" layoutY="484.0" onAction="#submitUser" prefHeight="37.0" prefWidth="183.0" styleClass="sub-color" text="Создать" textFill="WHITE">
          <cursor>
             <Cursor fx:constant="HAND" />
@@ -74,16 +73,11 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXTextField>
-      <JFXTextField fx:id="salaryInput" layoutX="319.0" layoutY="364.0">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </JFXTextField>
-      <JFXCheckBox fx:id="isAdminInput" layoutX="109.0" layoutY="440.0" text="Администратор">
+      <JFXCheckBox fx:id="isAdminInput" layoutX="101.0" layoutY="416.0" text="Администратор">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXCheckBox>
-      <MenuButton fx:id="positionInput" layoutX="319.0" layoutY="398.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="146.0" text="Выберите" />
+      <MenuButton fx:id="positionInput" layoutX="319.0" layoutY="366.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="146.0" text="Выберите" />
    </children>
 </AnchorPane>

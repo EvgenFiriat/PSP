@@ -63,17 +63,17 @@
                         <Insets left="10.0" />
                      </padding>
                   </Label>
-                  <JFXButton fx:id="editBtn" onAction="#showEditModal" layoutX="474.0" layoutY="49.0" ripplerFill="#cdc0c0" text="Править" underline="true">
+                  <JFXButton fx:id="editBtn" layoutX="474.0" layoutY="49.0" onAction="#showEditModal" ripplerFill="#cdc0c0" text="Править" underline="true">
                      <font>
                         <Font name="System Italic" size="10.0" />
                      </font>
                   </JFXButton>
-                  <Label layoutX="123.0" layoutY="269.0" text="Текущий проект:">
+                  <Label layoutX="123.0" layoutY="269.0" text="Текущая пара: ">
                      <font>
                         <Font name="Noto Sans Arabic UI Regular" size="16.0" />
                      </font>
                   </Label>
-                  <Label fx:id="currentProjectLabel" layoutX="306.0" layoutY="269.0" prefHeight="26.0" prefWidth="140.0" text="SmileDirectClub" textAlignment="JUSTIFY">
+                  <Label fx:id="currentClassLabel" layoutX="306.0" layoutY="269.0" prefHeight="26.0" prefWidth="188.0" text="Beginners в ауд. 409-1" textAlignment="JUSTIFY">
                      <font>
                         <Font name="Noto Sans Arabic UI Regular" size="16.0" />
                      </font>
@@ -106,7 +106,8 @@
             <JFXButton defaultButton="true" layoutX="19.0" layoutY="155.0" onAction="#homeViewEvent" prefHeight="28.0" prefWidth="140.0" ripplerFill="#070707" text="Профиль" textFill="WHITE" underline="true" />
             <JFXButton layoutX="19.0" layoutY="197.0" onAction="#showStaffWindow" prefHeight="28.0" prefWidth="140.0" ripplerFill="#070707" text="Сотрудники" textFill="WHITE" />
             <JFXButton fx:id="oooButton" layoutX="19.0" layoutY="242.0" onAction="#viewOutOfOfficeModal" prefHeight="28.0" prefWidth="140.0" ripplerFill="#070707" text="Вне офиса" textFill="WHITE" />
-            <JFXButton fx:id="showNotificationsButton" layoutX="19.0" layoutY="285.0" onAction="#showNotificationsModal" prefHeight="28.0" prefWidth="140.0" ripplerFill="#070707" text="Уведомления (1)" textFill="WHITE" />
+            <JFXButton fx:id="showNotificationsButton" layoutX="19.0" layoutY="285.0" onAction="#showNotificationsModal" prefHeight="28.0" prefWidth="140.0" ripplerFill="#070707" text="Уведомления" textFill="WHITE" />
+            <JFXButton fx:id="showScheduleButton" layoutX="19.0" layoutY="322.0" onAction="#showScheduleModal" prefHeight="28.0" prefWidth="140.0" ripplerFill="#070707" text="Расписание" textFill="WHITE" />
          </children>
       </AnchorPane>
    </children>

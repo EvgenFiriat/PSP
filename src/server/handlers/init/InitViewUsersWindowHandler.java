@@ -1,5 +1,6 @@
 package server.handlers.init;
 
+import database.DAO.ClassDAO;
 import database.DAO.UserDAO;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -22,8 +23,8 @@ public class InitViewUsersWindowHandler implements IActionHandler {
                 serializedUser.put("name", result.getString("name"));
                 serializedUser.put("surname", result.getString("surname"));
                 serializedUser.put("email", result.getString("email"));
-                serializedUser.put("projectName", result.getString("project"));
-                serializedUser.put("position", result.getString("position"));
+                serializedUser.put("position", new ClassDAO().getScheduledClass(result.getLong("user.id")));
+                serializedUser.put("level", result.getString("level"));
                 serializedUser.put("isBanned", result.getBoolean("is_banned"));
                 users.add(serializedUser);
             }

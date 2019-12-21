@@ -29,4 +29,9 @@ public class AdminWindowController extends BaseUserWindowController {
         Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         WindowDispatcher.popupModalWindow(Constants.USER_EDIT_ACCOUNT_WINDOW, window);
     }
+
+    public void showStats(ActionEvent actionEvent) {
+        Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        WindowDispatcher.popupModalWindow(Constants.PIE_CHART_WINDOW, window);
+    }
 }

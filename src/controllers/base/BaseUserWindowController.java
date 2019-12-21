@@ -48,7 +48,7 @@ public abstract class BaseUserWindowController extends ServerConnector implement
     private Label positionLabel;
 
     @FXML
-    private Label currentProjectLabel;
+    private Label currentClassLabel;
 
     @FXML
     private Label phoneNumberLabel;
@@ -90,8 +90,9 @@ public abstract class BaseUserWindowController extends ServerConnector implement
         userNameLabel.setText((String) responseData.get("fullName"));
         emailLabel.setText((String) responseData.get("email"));
         skypeLabel.setText((String) responseData.get("skype"));
-        positionLabel.setText((String) responseData.get("position"));
-        currentProjectLabel.setText((String) responseData.get("project"));
+        positionLabel.setText((String) responseData.get("level"));
+        if (currentClassLabel != null)
+            currentClassLabel.setText((String) responseData.get("classData"));
         phoneNumberLabel.setText((String) responseData.get("phone"));
     }
 

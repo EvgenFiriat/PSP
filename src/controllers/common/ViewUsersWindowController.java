@@ -50,7 +50,7 @@ public class ViewUsersWindowController extends ServerConnector implements Initia
     public TableColumn<UserVM, String> emailColumn;
 
     @FXML
-    public TableColumn<UserVM, String> projectColumn;
+    public TableColumn<UserVM, String> levelColumn;
 
     @FXML
     public TableColumn<UserVM, String> positionColumn;
@@ -86,7 +86,7 @@ public class ViewUsersWindowController extends ServerConnector implements Initia
         columnName.setCellValueFactory(new PropertyValueFactory<>("name"));
         surnameColumn.setCellValueFactory(new PropertyValueFactory<>("surname"));
         emailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
-        projectColumn.setCellValueFactory(new PropertyValueFactory<>("projectName"));
+        levelColumn.setCellValueFactory(new PropertyValueFactory<>("level"));
         positionColumn.setCellValueFactory(new PropertyValueFactory<>("position"));
         isBannedColumn.setCellValueFactory(new PropertyValueFactory<>("isBanned"));
 
