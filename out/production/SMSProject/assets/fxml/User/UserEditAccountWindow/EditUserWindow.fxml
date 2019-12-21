@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="474.0" prefWidth="600.0" stylesheets="@../../../css/colors.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="474.0" prefWidth="600.0" stylesheets="@../../../css/colors.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.user.UserEditAccountController">
    <children>
       <AnchorPane layoutY="-1.0" prefHeight="87.0" prefWidth="600.0" styleClass="main-color">
          <children>
@@ -30,37 +30,37 @@
       <Label layoutX="109.0" layoutY="268.0" prefHeight="18.0" text="E-mail" />
       <Label layoutX="109.0" layoutY="301.0" prefHeight="18.0" text="Skype" />
       <Label layoutX="109.0" layoutY="335.0" prefHeight="18.0" text="Телефонный номер" />
-      <JFXButton layoutX="209.0" layoutY="390.0" prefHeight="37.0" prefWidth="183.0" styleClass="sub-color" text="Сохранить" textFill="WHITE">
+      <JFXButton fx:id="submitBtn" layoutX="209.0" layoutY="390.0" onAction="#submitUser" prefHeight="37.0" prefWidth="183.0" styleClass="sub-color" text="Сохранить" textFill="WHITE">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <JFXPasswordField layoutX="319.0" layoutY="229.0">
+      <JFXPasswordField fx:id="passwordInput" layoutX="319.0" layoutY="229.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXPasswordField>
-      <JFXTextField layoutX="319.0" layoutY="161.0">
+      <JFXTextField fx:id="nameInput" layoutX="319.0" layoutY="161.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXTextField>
-      <JFXTextField layoutX="319.0" layoutY="195.0">
+      <JFXTextField fx:id="surnameInput" layoutX="319.0" layoutY="195.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXTextField>
-      <JFXTextField layoutX="319.0" layoutY="263.0">
+      <JFXTextField fx:id="emailInput" layoutX="319.0" layoutY="263.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXTextField>
-      <JFXTextField layoutX="319.0" layoutY="296.0">
+      <JFXTextField fx:id="skypeInput" layoutX="319.0" layoutY="296.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXTextField>
-      <JFXTextField layoutX="319.0" layoutY="330.0">
+      <JFXTextField fx:id="phoneInput" layoutX="319.0" layoutY="330.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>

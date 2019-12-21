@@ -8,22 +8,22 @@ import server.base.IActionHandler;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class InitAdminNotificationsWindowHandler implements IActionHandler {
+public class InitUserNotificationsWindowHandler implements IActionHandler {
     @Override
     public String handle(JSONObject data) {
         JSONObject response = new JSONObject();
         JSONArray requests = new JSONArray();
         try {
 
-            ResultSet result = new RequestDAO().getRequestsByApprover((Long) data.get("id"));
+            ResultSet result = new RequestDAO().getSentRequests((Long) data.get("id"));
+
             while (result.next()) {
                 JSONObject obj = new JSONObject();
                 obj.put("id", result.getLong("id"));
-                obj.put("name", result.getString("user.name"));
-                obj.put("surname", result.getString("user.surname"));
-                obj.put("comment", result.getString("comment"));
+                obj.put("approverName", result.getString("user.name") + " " + result.getString("user.surname"));
                 obj.put("requestType", result.getString("request_type.name"));
                 obj.put("date", result.getDate("start_date").toString() + " - " + result.getDate("end_date"));
+                obj.put("isApproved", result.getBoolean("ooo_request.is_approved") ? "Подтвержден" : "Не подтвержден");
                 requests.add(obj);
             }
             response.put("notifications", requests);
