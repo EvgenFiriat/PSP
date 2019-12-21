@@ -11,11 +11,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="601.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="601.0" prefWidth="600.0" stylesheets="@../../../css/colors.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <AnchorPane layoutY="-1.0" prefHeight="87.0" prefWidth="600.0" style="-fx-background-color: #1D2026;">
+      <AnchorPane layoutY="-1.0" prefHeight="87.0" prefWidth="600.0" styleClass="main-color">
          <children>
-            <Label layoutX="103.0" layoutY="25.0" text="Редактирование пользователя" textFill="#fffefe">
+            <Label layoutX="103.0" layoutY="25.0" styleClass="main-color" text="Редактирование пользователя" textFill="#fffefe">
                <font>
                   <Font name="Noto Sans Arabic UI Bold" size="24.0" />
                </font>
@@ -40,7 +40,7 @@
       <Label layoutX="109.0" layoutY="335.0" prefHeight="18.0" text="Телефонный номер" />
       <Label layoutX="109.0" layoutY="369.0" prefHeight="18.0" text="Заработная плата" />
       <Label layoutX="109.0" layoutY="403.0" prefHeight="18.0" text="Позиция" />
-      <JFXButton layoutX="209.0" layoutY="484.0" prefHeight="37.0" prefWidth="183.0" style="-fx-background-color: #1D2026;" text="Сохранить" textFill="WHITE">
+      <JFXButton layoutX="209.0" layoutY="484.0" prefHeight="37.0" prefWidth="183.0" styleClass="sub-color" text="Сохранить" textFill="WHITE">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>

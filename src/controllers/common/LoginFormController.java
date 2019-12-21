@@ -38,7 +38,7 @@ public class LoginFormController extends ServerConnector implements IValidator {
                     Platform.runLater(new Runnable() {
                         @Override
                         public void run() {
-                            WindowDispatcher.showErrorMessage("Invalid data", "Fields should not be empty");
+                            WindowDispatcher.showErrorMessage("Ошибка данных", "Заполните все поля");
                         }
                     });
                     return;
@@ -56,7 +56,7 @@ public class LoginFormController extends ServerConnector implements IValidator {
                     Platform.runLater(new Runnable() {
                         @Override
                         public void run() {
-                            WindowDispatcher.showErrorMessage("Request error", "Connection refused");
+                            WindowDispatcher.showErrorMessage("Ошибка запроса", "Отказано в подключении");
                         }
                     });
                 } finally {
@@ -125,7 +125,7 @@ public class LoginFormController extends ServerConnector implements IValidator {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                WindowDispatcher.showErrorMessage("Error", "Invalid credentials");
+                WindowDispatcher.showErrorMessage("Ошибка", "Такого пользователя не существует");
                 emailInput.clear();
                 passwordInput.clear();
             }

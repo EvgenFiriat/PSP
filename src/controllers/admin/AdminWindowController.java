@@ -39,6 +39,9 @@ public class AdminWindowController extends ServerConnector implements IValidator
     public JFXButton homeProfileWindow;
 
     @FXML
+    public JFXButton showNotificationsButton;
+
+    @FXML
     private Label emailLabel;
 
     @FXML
@@ -145,5 +148,10 @@ public class AdminWindowController extends ServerConnector implements IValidator
     public void viewOutOfOfficeModal(ActionEvent actionEvent) {
         Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         WindowDispatcher.popupModalWindow(Constants.OOO_REQUEST_WINDOW, window);
+    }
+
+    public void showNotificationsWindow(ActionEvent actionEvent) {
+        Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        WindowDispatcher.popupModalWindow(Constants.ADMIN_NOTIFICATIONS_WINDOW, window);
     }
 }

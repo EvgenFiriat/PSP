@@ -8,9 +8,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="474.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="474.0" prefWidth="600.0" stylesheets="@../../../css/colors.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <AnchorPane layoutY="-1.0" prefHeight="87.0" prefWidth="600.0" style="-fx-background-color: #1D2026;">
+      <AnchorPane layoutY="-1.0" prefHeight="87.0" prefWidth="600.0" styleClass="main-color">
          <children>
             <Label layoutX="103.0" layoutY="25.0" text="Редактирование пользователя" textFill="#fffefe">
                <font>
@@ -30,7 +30,7 @@
       <Label layoutX="109.0" layoutY="268.0" prefHeight="18.0" text="E-mail" />
       <Label layoutX="109.0" layoutY="301.0" prefHeight="18.0" text="Skype" />
       <Label layoutX="109.0" layoutY="335.0" prefHeight="18.0" text="Телефонный номер" />
-      <JFXButton layoutX="209.0" layoutY="390.0" prefHeight="37.0" prefWidth="183.0" style="-fx-background-color: #1D2026;" text="Сохранить" textFill="WHITE">
+      <JFXButton layoutX="209.0" layoutY="390.0" prefHeight="37.0" prefWidth="183.0" styleClass="sub-color" text="Сохранить" textFill="WHITE">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>

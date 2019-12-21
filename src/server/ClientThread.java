@@ -4,14 +4,8 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import server.base.IActionHandler;
-import server.handlers.AddUserHandler;
-import server.handlers.BlockUserHandler;
-import server.handlers.LoginHandler;
-import server.handlers.OOORequestHandler;
-import server.handlers.init.InitAddUserModalHandler;
-import server.handlers.init.InitOOORequestWindowHandler;
-import server.handlers.init.InitUserWindowHandler;
-import server.handlers.init.InitViewUsersWindowHandler;
+import server.handlers.*;
+import server.handlers.init.*;
 import utils.Constants;
 
 import java.io.*;
@@ -64,6 +58,8 @@ public class ClientThread extends Thread {
         this.handlersMap.put(Constants.ACTION_BLOCK_USER, new BlockUserHandler());
         this.handlersMap.put(Constants.ACTION_INIT_OOO_REQUEST_WINDOW, new InitOOORequestWindowHandler());
         this.handlersMap.put(Constants.ACTION_CREATE_OOO_REQUEST, new OOORequestHandler());
+        this.handlersMap.put(Constants.ACTION_INIT_ADMIN_NOTIFICATIONS_WINDOW, new InitAdminNotificationsWindowHandler());
+        this.handlersMap.put(Constants.ACTION_TREAT_OOO_REQUEST, new TreatOOORequestHandler());
     }
 
     public BufferedWriter getWriter() {

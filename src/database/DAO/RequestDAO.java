@@ -16,6 +16,16 @@ public class RequestDAO implements DBQueryHandler {
         return query.executeQuery();
     }
 
+    public ResultSet getRequestsByApprover(Long id) throws SQLException, ClassNotFoundException {
+        String sql = "SELECT ooo_request.id, user.name, request_type.name, user.surname, ooo_request.comment, ooo_request.start_date, ooo_request.end_date FROM ooo_request " +
+                "JOIN request_type on request_type_id = request_type.id " +
+                "JOIN user on user.id = ooo_request.user_id " +
+                "WHERE ooo_request.approver_id = ? AND is_approved IS NULL";
+        PreparedStatement query = MySqlConnection.getConnection().prepareStatement(sql);
+        query.setLong(1, id);
+        return query.executeQuery();
+    }
+
     public Long getRequestTypeIdByName(String name) throws SQLException, ClassNotFoundException {
         String sql = "SELECT id from request_type WHERE name = ? LIMIT 1";
         PreparedStatement query = MySqlConnection.getConnection().prepareStatement(sql);
@@ -23,6 +33,14 @@ public class RequestDAO implements DBQueryHandler {
         ResultSet result = query.executeQuery();
         result.next();
         return result.getLong("id");
+    }
+
+    public void treatOOORequest(Long requestID, boolean isApproved) throws SQLException, ClassNotFoundException {
+        String sql = "UPDATE ooo_request SET is_approved = ? WHERE user_id = ?";
+        PreparedStatement query = MySqlConnection.getConnection().prepareStatement(sql);
+        query.setBoolean(1, isApproved);
+        query.setLong(2, requestID);
+        query.executeUpdate();
     }
 
     public void createOOORequest(JSONObject data) throws SQLException, ClassNotFoundException {
