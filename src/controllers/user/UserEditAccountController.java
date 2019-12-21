@@ -112,7 +112,7 @@ public class UserEditAccountController extends ServerConnector implements Initia
         data.put("email", emailInput.getText().trim());
         data.put("skype", skypeInput.getText().trim());
         data.put("phone", phoneInput.getText().trim());
-        data.put("userID", SessionStorage.getCurrentUserId());
+        data.put("userID", SessionStorage.getViewedProfileId());
         obj.put("action", Constants.ACTION_EDIT_USER);
         obj.put("data", data);
         return obj.toJSONString() + "\n";
