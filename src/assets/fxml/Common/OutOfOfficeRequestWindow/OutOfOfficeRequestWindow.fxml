@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXDatePicker?>
 <?import com.jfoenix.controls.JFXTextArea?>
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -39,9 +39,9 @@
             <Font name="System Bold" size="14.0" />
          </font></Label>
       <JFXTextArea fx:id="commentInput" layoutX="60.0" layoutY="310.0" />
-      <JFXDatePicker fx:id="startDatePicker" layoutX="378.0" layoutY="209.0" promptText="yyyy-mm-dd" />
-      <JFXDatePicker fx:id="endDatePicker" layoutX="378.0" layoutY="278.0" promptText="yyyy-mm-dd" />
-      <Label layoutX="378.0" layoutY="180.0" text="Дата начала" />
-      <Label layoutX="376.0" layoutY="249.0" text="Дата окончания" />
+      <DatePicker fx:id="startDatePicker" layoutX="380.0" layoutY="178.0" promptText="yyyy-mm-dd" />
+      <DatePicker fx:id="endDatePicker" layoutX="380.0" layoutY="244.0" promptText="yyyy-mm-dd" />
+      <Label layoutX="380.0" layoutY="146.0" text="Дата начала" />
+      <Label layoutX="378.0" layoutY="215.0" text="Дата окончания" />
    </children>
 </AnchorPane>

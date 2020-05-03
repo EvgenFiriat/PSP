@@ -9,6 +9,7 @@ import controllers.base.ServerConnector;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.stage.Stage;
@@ -28,8 +29,8 @@ import java.util.ResourceBundle;
 public class OOORequestWindowController extends ServerConnector implements IValidator, Initializable, IPersonalized {
     public JFXButton submitButton;
     public JFXTextArea commentInput;
-    public JFXDatePicker startDatePicker;
-    public JFXDatePicker endDatePicker;
+    public DatePicker startDatePicker;
+    public DatePicker endDatePicker;
     public MenuButton approverPicker;
     public MenuButton requestTypePicker;
 
